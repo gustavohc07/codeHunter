@@ -6,7 +6,7 @@
    <%= link_to 'Entrar' %> <br>
  <% end %>
 
- <%= link_to 'Vagas' %> <br>
+ <%= link_to 'Vagas', jobs_path %> <br>
 
  <% if current_headhunter %>
    <%= link_to 'Sair', destroy_headhunter_session_path, method: :delete  %> <br>

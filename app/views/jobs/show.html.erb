@@ -1,0 +1,20 @@
+<h1><%= "#{@job.title} - #{@job.number_of_vacancies} vagas" %></h1>
+
+<dl>
+  <dt>Nível</dt>
+    <dd><%= @job.level %></dd>
+  <dt>Faixa salarial</dt>
+    <dd><%= number_to_currency(@job.salary) %></dd>
+  <dt>Descrição da vaga</dt>
+    <dd><%= @job.description %></dd>
+  <dt>Habilidades desejadas</dt>
+    <dd><%= @job.abilities %></dd>
+  <dt>Prazo de inscrição</dt>
+    <dd>De <%= l(@job.start_date) %> ate <%= l(@job.deadline) %> - <%= "#{l(@job.deadline).to_i - l(@job.start_date).to_i} dias restantes" %></dd>
+  <dt>Local de atuação</dt>
+    <dd><%= @job.location %></dd>
+  <dt>Tipo de contrato</dt>
+    <dd><%= @job.contract_type %></dd>
+</dl>
+
+<div><%= link_to 'Voltar', jobs_path %></div>
