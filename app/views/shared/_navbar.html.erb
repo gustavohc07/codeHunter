@@ -1,0 +1,20 @@
+<% if headhunter_signed_in? %>
+  <nav>
+    <%= link_to t('.home'), root_path %>
+    <%= link_to t('.about_us') %>
+    <%= link_to t('.listed_jobs'), jobs_path %>
+    <%= link_to t('.my_listed_jobs') %>
+    <%= link_to t('.new_job'), new_job_path %>
+    <%= link_to t('.sign_out'), destroy_headhunter_session_path, method: :delete %>
+  </nav>
+
+<% else %>
+  <nav>
+    <%= link_to t('.home'), root_path %>
+    <%= link_to t('.about_us') %>
+    <%= link_to t('.jobs'), jobs_path %>
+    <%= link_to t('.coder') %>
+    <%= link_to t('.headhunter'), new_headhunter_registration_path%>
+    <%= link_to t('login')%>
+  </nav>
+<% end %>
