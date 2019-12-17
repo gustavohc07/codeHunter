@@ -5,9 +5,9 @@ feature 'Headhunter register' do
     visit root_path
     click_on 'Sou um CodeHunter!'
 
-    fill_in 'Email', with: 'test@test.com'
-    fill_in 'Password', with: '123456'
-    fill_in 'Password confirmation', with: '123456'
+    fill_in 'E-mail', with: 'test@test.com'
+    fill_in 'Senha', with: '123456'
+    fill_in 'Confirme sua senha', with: '123456'
     click_on 'Sign up'
 
     expect(page).to have_content('Bem vindo! Você realizou seu registro com sucesso.')
@@ -19,11 +19,11 @@ feature 'Headhunter register' do
     visit root_path
     click_on 'Sou um CodeHunter!'
 
-    fill_in 'Email', with: 'test@test.com'
-    fill_in 'Password', with: '123456'
-    fill_in 'Password confirmation', with: '123456'
+    fill_in 'E-mail', with: 'test@test.com'
+    fill_in 'Senha', with: '123456'
+    fill_in 'Confirme sua senha', with: '123456'
     click_on 'Sign up'
 
-    expect(page).to have_content('Email já está em uso')
+    expect(page).to have_content('E-mail já está em uso')
   end
 end
