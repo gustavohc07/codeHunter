@@ -1,0 +1,11 @@
+pt-BR:
+  jobs:
+    show:
+      registration_deadline: Prazo de inscrição
+      level: Nível
+      salary: Faixa salarial
+      description: Descrição da vaga
+      abilities: Habilidades desejadas
+      location: Região de atuação
+      contract_type: Tipo de contrato
+      number_of_vacancies: Número de vagas

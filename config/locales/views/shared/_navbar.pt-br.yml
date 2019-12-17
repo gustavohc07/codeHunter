@@ -1,0 +1,11 @@
+pt-BR:
+  shared:
+    navbar:
+      sign_out: Sair
+      new_job: Nova Vaga
+      my_listed_jobs: Minhas Vagas
+      listed_jobs: Vagas
+      about_us: Sobre nós
+      coder: Sou um coder!
+      headhunter: Sou um CodeHunter!
+      jobs: Vagas

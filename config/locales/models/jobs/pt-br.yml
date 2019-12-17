@@ -1,0 +1,17 @@
+pt-BR:
+  activerecord:
+    model:
+      job: Vaga
+      other: Vagas
+    attributes:
+      job:
+        title: Título da vaga
+        level: Nível
+        number_of_vacancies: Número de Vagas
+        salary: Faixa Salarial
+        description: Descrição
+        abilities: Habilidades Desejadas
+        start_date: Data inicial do processo
+        deadline: Data limite para inscrição
+        location: Região de atuação
+        contract_type: Tipo de contrato

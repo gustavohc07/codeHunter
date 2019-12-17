@@ -1,0 +1,28 @@
+<h1><%= @job.title %></h1>
+
+<dl>
+  <dt><%= t('.level') %></dt>
+    <dd><%= @job.level %></dd>
+  <dt><%= t('.salary') %></dt>
+    <dd><%= number_to_currency(@job.salary) %></dd>
+  <dt><%= t('.description') %></dt>
+    <dd><%= @job.description %></dd>
+  <dt><%= t('.abilities') %></dt>
+    <dd><%= @job.abilities %></dd>
+  <dt><%= t('.registration_deadline') %></dt>
+    <dd>De <%= l(@job.start_date) %> ate <%= l(@job.deadline) %> - <%= "#{l(@job.deadline).to_i - l(@job.start_date).to_i} dias restantes" %></dd>
+  <dt><%= t('.location') %></dt>
+    <dd><%= @job.location %></dd>
+  <dt><%= t('.contract_type') %></dt>
+    <dd><%= @job.contract_type %></dd>
+  <dt><%= t('.number_of_vacancies') %></dt>
+  <dd><%= @job.number_of_vacancies %></dd>
+</dl>
+
+
+<br>
+<% if headhunter_signed_in? %>
+  <%= link_to 'Editar Vaga' %>
+  <%= link_to 'Excluir Vaga' %>
+<% end %>
+<div><%= link_to 'Voltar', jobs_path %></div>

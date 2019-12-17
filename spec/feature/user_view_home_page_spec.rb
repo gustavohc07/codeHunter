@@ -10,7 +10,7 @@ feature 'user view home page' do
       expect(page).to have_link('Sou um coder!')
       expect(page).to have_link('Sou um CodeHunter!')
       expect(page).to have_content('Vagas')
-      expect(page).to have_content('Entrar')
+      expect(page).to have_content('Login')
     end
   end
   context 'as a headhunter' do
@@ -22,8 +22,8 @@ feature 'user view home page' do
       expect(page).to have_css('h1', text: 'CodeHunters')
       expect(page).not_to have_link('Sou um coder!')
       expect(page).not_to have_link('Sou um CodeHunter!')
-      expect(page).not_to have_link('Entrar')
-      expect(page).to have_content('Cadastrar nova vaga')
+      expect(page).not_to have_link('Login')
+      expect(page).to have_content('Nova Vaga')
     end
 
     scenario 'and logout' do
