@@ -1,14 +1,1 @@
- <h1> CodeHunters </h1> <br>
-
- <% unless headhunter_signed_in? %>
-   <%= link_to 'Sou um coder!'  %> <br>
-   <%= link_to 'Sou um CodeHunter!', new_headhunter_registration_path %> <br>
-   <%= link_to 'Entrar' %> <br>
- <% end %>
-
- <%= link_to 'Vagas', jobs_path %> <br>
-
- <% if current_headhunter %>
-   <%= link_to 'Sair', destroy_headhunter_session_path, method: :delete  %> <br>
-   <%= link_to 'Cadastrar nova vaga' %>
- <% end %>
+ <h1> <%= t('.welcome_message') %> </h1> <br>

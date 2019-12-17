@@ -94,8 +94,8 @@ feature 'User view jobs listed' do
 
       expect(page).to have_content('Não há vagas cadastradas! Que tal ser o primeiro? Basta clicar aqui! :)')
       expect(page).to have_link('clicar aqui')
-      expect(page).to have_link('Minhas vagas')
-      expect(page).to have_link('Cadastrar nova vaga')
+      expect(page).to have_link('Minhas Vagas')
+      expect(page).to have_link('Nova Vaga')
       expect(page).to have_link('Voltar')
     end
 
@@ -116,14 +116,14 @@ feature 'User view jobs listed' do
       visit root_path
       click_on 'Vagas'
 
-      expect(page).to have_content('Programador RoR')
+      expect(page).to have_content('Programador RoR - 4 vagas')
       expect(page).to have_content('Júnior')
       expect(page).to have_content('4 vagas')
       expect(page).to have_content('CLT')
       expect(page).to have_link('Ver detalhes')
 
-      expect(page).to have_link('Minhas vagas')
-      expect(page).to have_link('Cadastrar nova vaga')
+      expect(page).to have_link('Minhas Vagas')
+      expect(page).to have_link('Nova Vaga')
       expect(page).to have_link('Sair')
       expect(page).not_to have_content('Não há vagas cadastradas! Que tal ser o primeiro? :)')
       expect(page).not_to have_link('Clique aqui')
@@ -153,9 +153,12 @@ feature 'User view jobs listed' do
       expect(page).to have_content('Descrição da vaga')
       expect(page).to have_content('Habilidades desejadas')
       expect(page).to have_content('Prazo de inscrição')
+      expect(page).to have_content('Região de atuação')
+      expect(page).to have_content('Tipo de contrato')
+      expect(page).to have_content('Número de vagas')
 
 
-      expect(page).to have_css('h1', text: 'Programador RoR - 4 vagas')
+      expect(page).to have_css('h1', text: 'Programador RoR')
       expect(page).to have_content('Júnior')
       expect(page).to have_content('R$ 3.500,00')
       expect(page).to have_content('Programador Ruby on Rails para atuar em startup')

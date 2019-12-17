@@ -4,16 +4,40 @@
     <title>Codehunter</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-  <nav>
-  </nav>
-  <%= notice %>
-  <%= alert %>
-    <%= yield %>
+  <header class="header">
+    <div class="container">
+      <nav class="level">
+        <div class="level-left">
+          <div class="level-item">
+            CodeHunters
+          </div>
+        </div>
+        <div class="level-right">
+          <p class="level-item">
+            <%= render partial: '/shared/navbar' %>
+          </p>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <section class="section">
+    <div class="container">
+      <%= notice %>
+      <%= alert %>
+      <%= yield %>
+    </div>
+  </section>
+  <footer class="footer">
+    <div class="container">
+      Copyright © 2019 CodeHunters. No rights reserved at all.
+    </div>
+  </footer>
   </body>
 </html>

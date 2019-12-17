@@ -1,0 +1,64 @@
+<%= form_with model: job, local: true do |f| %>
+  <% if job.errors.any? %>
+    <h2>Você deve corrigir <%= pluralize(job.errors.count, 'erro', 'erros') %>:</h2>
+    <ul>
+      <% job.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <br>
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div>
+    <%= f.label :level %>
+    <%= f.text_field :level %>
+  </div>
+
+  <div>
+    <%= f.label :number_of_vacancies %>
+    <%= f.number_field :number_of_vacancies %>
+  </div>
+
+  <div>
+    <%= f.label :salary %>
+    <%= f.text_field :salary %>
+  </div>
+
+  <div>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+
+  <div>
+    <%= f.label :abilities %>
+    <%= f.text_area :abilities %>
+  </div>
+
+  <div>
+    <%= f.label :deadline %>
+    <%= f.date_field :deadline %>
+  </div>
+
+  <div>
+    <%= f.label :start_date %>
+    <%= f.date_field :start_date %>
+  </div>
+
+  <div>
+    <%= f.label :location %>
+    <%= f.text_field :location %>
+  </div>
+
+  <div>
+    <%= f.label :contract_type %>
+    <%= f.text_field :contract_type %>
+  </div>
+
+  <div>
+    <%= f.submit 'Enviar'%>
+  </div>
+<% end %>

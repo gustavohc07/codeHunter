@@ -6,7 +6,7 @@ feature 'Headhunter/Codehunter register new job application' do
 
     login_as headhunter, scope: :headhunter
     visit root_path
-    click_on 'Cadastrar nova vaga'
+    click_on 'Nova Vaga'
 
     fill_in 'Título da vaga', with: 'Programador RoR'
     fill_in 'Nível', with: 'Júnior'
@@ -20,23 +20,26 @@ feature 'Headhunter/Codehunter register new job application' do
     fill_in 'Tipo de contrato', with: 'CLT'
     click_on 'Enviar'
 
-    expect(page).to have_css('h1', text: 'Programador RoR - 4 vagas')
+    expect(page).to have_content('Vaga criada com sucesso!')
+    expect(page).to have_css('h1', text: 'Programador RoR')
     expect(page).to have_content('Júnior')
-    expect(page).to have_content('R$ 3500,00')
+    expect(page).to have_content('R$ 3.500,00')
     expect(page).to have_content('Programador Ruby on Rails para atuar em startup')
     expect(page).to have_content('CRUD, Git, Ruby, Ruby on Rails, Boa comunicação')
     expect(page).to have_content('20/01/2020')
     expect(page).to have_content('Remoto')
+    expect(page).to have_content('4')
+    expect(page).to have_content('CLT')
 
-    expect(page).to have_link('Nova vaga')
-    expect(page).to have_link('Editar vaga')
-    expect(page).to have_link('Excluir vaga')
+    expect(page).to have_link('Nova Vaga')
+    expect(page).to have_link('Editar Vaga')
+    expect(page).to have_link('Excluir Vaga')
     expect(page).to have_link('Voltar')
   end
   scenario 'and must log in to register new job' do
     visit new_job_path
 
-    expect(page).to have_content('Voce nao tem autorização')
+    expect(page).to have_content('Para continuar, faça login ou registre-se.')
   end
 
   scenario 'and must fill in all fields' do
@@ -44,10 +47,10 @@ feature 'Headhunter/Codehunter register new job application' do
 
     login_as headhunter, scope: :headhunter
     visit root_path
-    click_on 'Registrar nova vaga'
+    click_on 'Nova Vaga'
     click_on 'Enviar'
 
-    expect(page).to have_content('Você deve corrigir os seguintes erros:')
-    expect(page).to have_content('não deve ficar em branco!')
+    expect(page).to have_content('Você deve corrigir')
+    expect(page).to have_content('não pode ficar em branco')
   end
 end
