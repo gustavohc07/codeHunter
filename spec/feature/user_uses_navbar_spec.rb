@@ -114,6 +114,18 @@ feature 'User uses navbar' do
   end
 
   context 'as candidate' do
+    scenario 'and view all links from navbar' do
+      candidate = Candidate.create!(name: 'Gustavo', last_name: 'Carvalho', email: 'test@test.com', password:'123456')
+
+      login_as candidate, scope: :candidate
+      visit root_path
+      expect(page).to have_link('Home')
+      expect(page).to have_link('Sobre nós')
+      expect(page).to have_link('Vagas')
+      expect(page).to have_link('Minhas candidaturas')
+      expect(page).to have_link('Meu perfil')
+      expect(page).to have_link('Sair')
+    end
 
   end
 end
