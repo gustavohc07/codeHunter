@@ -30,7 +30,7 @@ feature 'User register as candidate' do
     fill_in 'Sobrenome', with: 'Carvalho'
     fill_in 'E-mail', with: 'test@test.com'
     fill_in 'Senha', with: '123456'
-    fill_in 'Confirme sua senha', with: '1234556'
+    fill_in 'Confirme sua senha', with: '123456'
     click_on 'Sign up'
 
     expect(page).to have_content('E-mail já está em uso')
