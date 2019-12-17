@@ -2,7 +2,6 @@ pt-BR:
   activerecord:
     model:
       job: Vaga
-      other: Vagas
     attributes:
       job:
         title: Título da vaga
