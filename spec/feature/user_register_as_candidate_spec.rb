@@ -7,6 +7,7 @@ feature 'User register as candidate' do
 
     expect(current_path).to eq new_candidate_registration_path
   end
+
   scenario 'succesfully register' do
     visit root_path
     click_on 'Sou um coder!'
@@ -18,7 +19,8 @@ feature 'User register as candidate' do
     fill_in 'Confirme sua senha', with: 'candidate@test.com'
     click_on 'Sign up'
   end
-  scenario 'and must nome register with same email' do
+
+  scenario 'and must not register with same email' do
     Candidate.create!(name: 'Gustavo', last_name: 'Carvalho', email: 'test@test.com', password: '123456')
 
     visit root_path
