@@ -55,7 +55,7 @@ feature 'User view jobs listed' do
       click_on 'Vagas'
       click_on 'Ver detalhes'
 
-      expect(page).to have_content('Para continuar, faça login ou registre-se.')
+      expect(page).to have_content('Você deve estar logado para acessar essa área!')
     end
 
     scenario 'and cannot go do direct job path' do
@@ -72,7 +72,7 @@ feature 'User view jobs listed' do
 
       visit job_path(job)
 
-      expect(page).to have_content('Para continuar, faça login ou registre-se.')
+      expect(page).to have_content('Você deve estar logado para acessar essa área!')
     end
 
     scenario 'and can return to home page' do
