@@ -39,7 +39,7 @@ feature 'Headhunter/Codehunter register new job application' do
   scenario 'and must log in to register new job' do
     visit new_job_path
 
-    expect(page).to have_content('Para continuar, faça login ou registre-se.')
+    expect(page).to have_content('Você deve ser um CodeHunter para acessar essa área!')
   end
 
   scenario 'and must fill in all fields' do
