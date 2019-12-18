@@ -123,7 +123,7 @@ feature 'User uses navbar' do
       expect(page).to have_link('Sobre nós')
       expect(page).to have_link('Vagas')
       expect(page).to have_link('Minhas Candidaturas')
-      expect(page).to have_link('Meu Perfil')
+      expect(page).to have_link('Criar Perfil')
       expect(page).to have_link('Sair')
     end
     xscenario 'and can go to about us page' do

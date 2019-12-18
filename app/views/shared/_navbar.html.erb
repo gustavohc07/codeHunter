@@ -12,7 +12,11 @@
   <%= link_to t('.about_us') %>
   <%= link_to t('.jobs'), jobs_path %>
   <%= link_to t('.my_applications') %>
-  <%= link_to t('.profile') %>
+  <% if current_candidate.profile != nil %>
+    <%= link_to t('.profile'), profile_path(current_candidate) %>
+    <% else %>
+    <%= link_to 'Criar Perfil', new_profile_path %>
+  <%end %>
   <%= link_to t('.sign_out'), destroy_candidate_session_path, method: :delete%>
 <% else %>
   <nav>
@@ -24,3 +28,4 @@
     <%= link_to t('login')%>
   </nav>
 <% end %>
+
