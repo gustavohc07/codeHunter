@@ -114,6 +114,64 @@ feature 'User uses navbar' do
   end
 
   context 'as candidate' do
+    scenario 'and view all links from navbar' do
+      candidate = Candidate.create!(name: 'Gustavo', last_name: 'Carvalho', email: 'test@test.com', password:'123456')
 
+      login_as candidate, scope: :candidate
+      visit root_path
+      expect(page).to have_link('Home')
+      expect(page).to have_link('Sobre nós')
+      expect(page).to have_link('Vagas')
+      expect(page).to have_link('Minhas Candidaturas')
+      expect(page).to have_link('Meu Perfil')
+      expect(page).to have_link('Sair')
+    end
+    xscenario 'and can go to about us page' do
+      candidate = Candidate.create!(name: 'Gustavo', last_name: 'Carvalho', email: 'test@test.com', password:'123456')
+
+      login_as candidate, scope: :candidate
+      visit root_path
+      click_on 'Sobre nós'
+
+      expect(current_path).to eq banana_path
+    end
+    scenario 'and can go to jobs page' do
+      candidate = Candidate.create!(name: 'Gustavo', last_name: 'Carvalho', email: 'test@test.com', password:'123456')
+
+      login_as candidate, scope: :candidate
+      visit root_path
+      click_on 'Vagas'
+
+      expect(current_path).to eq jobs_path
+    end
+    xscenario 'and can see their job applications' do
+      candidate = Candidate.create!(name: 'Gustavo', last_name: 'Carvalho', email: 'test@test.com', password:'123456')
+
+      login_as candidate, scope: :candidate
+      visit root_path
+      click_on 'Minhas Candidaturas'
+
+      expect(current_path).to eq banana_path
+    end
+    xscenario 'and can see their profile' do
+      candidate = Candidate.create!(name: 'Gustavo', last_name: 'Carvalho', email: 'test@test.com', password:'123456')
+
+      login_as candidate, scope: :candidate
+      visit root_path
+      click_on 'Meu perfil'
+
+      expect(current_path).to eq banana_path
+    end
+
+    scenario 'and can go back to home page' do
+      candidate = Candidate.create!(name: 'Gustavo', last_name: 'Carvalho', email: 'test@test.com', password:'123456')
+
+      login_as candidate, scope: :candidate
+      visit root_path
+      click_on 'Vagas'
+      click_on 'Home'
+
+      expect(current_path).to eq root_path
+    end
   end
 end

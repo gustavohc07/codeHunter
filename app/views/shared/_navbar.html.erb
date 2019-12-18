@@ -7,13 +7,19 @@
     <%= link_to t('.new_job'), new_job_path %>
     <%= link_to t('.sign_out'), destroy_headhunter_session_path, method: :delete %>
   </nav>
-
+<% elsif candidate_signed_in? %>
+  <%= link_to t('.home'), root_path %>
+  <%= link_to t('.about_us') %>
+  <%= link_to t('.jobs'), jobs_path %>
+  <%= link_to t('.my_applications') %>
+  <%= link_to t('.profile') %>
+  <%= link_to t('.sign_out'), destroy_candidate_session_path, method: :delete%>
 <% else %>
   <nav>
     <%= link_to t('.home'), root_path %>
     <%= link_to t('.about_us') %>
     <%= link_to t('.jobs'), jobs_path %>
-    <%= link_to t('.coder') %>
+    <%= link_to t('.coder'), new_candidate_registration_path %>
     <%= link_to t('.headhunter'), new_headhunter_registration_path%>
     <%= link_to t('login')%>
   </nav>
