@@ -23,8 +23,8 @@ feature 'User view jobs listed' do
                   salary: 3500,
                   description: 'Programador Ruby on Rails',
                   abilities: 'CRUD, Git, Ruby, Ruby on Rails',
-                  deadline: 20/01/2020,
-                  start_date: 02/01/2020,
+                  deadline: '20/01/2020',
+                  start_date: '02/01/2020',
                   location: 'Remoto',
                   contract_type: 'CLT')
 
@@ -46,8 +46,8 @@ feature 'User view jobs listed' do
                   salary: 3500,
                   description: 'Programador Ruby on Rails',
                   abilities: 'CRUD, Git, Ruby, Ruby on Rails',
-                  deadline: 20/01/2020,
-                  start_date: 02/01/2020,
+                  deadline: '20/01/2020',
+                  start_date: '02/01/2020',
                   location: 'Remoto',
                   contract_type: 'CLT')
 
@@ -65,8 +65,8 @@ feature 'User view jobs listed' do
                   salary: 3500,
                   description: 'Programador Ruby on Rails',
                   abilities: 'CRUD, Git, Ruby, Ruby on Rails',
-                  deadline: 20/01/2020,
-                  start_date: 02/01/2020,
+                  deadline: '20/01/2020',
+                  start_date: '02/01/2020',
                   location: 'Remoto',
                   contract_type: 'CLT')
 
@@ -107,8 +107,8 @@ feature 'User view jobs listed' do
                   salary: 3500,
                   description: 'Programador Ruby on Rails',
                   abilities: 'CRUD, Git, Ruby, Ruby on Rails',
-                  deadline: 20/01/2020,
-                  start_date: 02/01/2020,
+                  deadline: '20/01/2020',
+                  start_date: '02/01/2020',
                   location: 'Remoto',
                   contract_type: 'CLT')
 
@@ -172,6 +172,75 @@ feature 'User view jobs listed' do
   end
 
   context 'as Candidate/Coder' do
+    scenario 'and view no jobs listed' do
+      candidate = Candidate.create!(name: 'Gustavo', last_name: 'Carvalho', email: 'test@test.com', password:'123456')
 
+      login_as candidate, scope: :candidate
+      visit root_path
+      click_on 'Vagas'
+
+      expect(current_path).to eq jobs_path
+      expect(page).to have_content('Que pena! Não há vagas públicas listadas no momento.')
+
+      expect(page).not_to have_content('Não há vagas públicas cadastradas! Que tal ser o primeiro? :)')
+      expect(page).not_to have_link('clicar aqui')
+      expect(page).not_to have_link('Minhas vagas')
+      expect(page).not_to have_link('Cadastrar nova vaga')
+      expect(page). to have_link('Voltar')
+    end
+    scenario 'and view jobs listed' do
+      candidate = Candidate.create!(name: 'Gustavo', last_name: 'Carvalho', email: 'test@test.com', password:'123456')
+      Job.create!(title: 'Programador RoR',
+                        level: 'Júnior',
+                        number_of_vacancies: 4,
+                        salary: 3500,
+                        description: 'Programador Ruby on Rails',
+                        abilities: 'CRUD, Git, Ruby, Ruby on Rails',
+                        deadline: '20/01/2020',
+                        start_date: '02/01/2020',
+                        location: 'Remoto',
+                        contract_type: 'CLT')
+
+      login_as candidate, scope: :candidate
+      visit root_path
+      click_on 'Vagas'
+
+      expect(page).to have_content('Programador RoR - 4 vagas')
+      expect(page).to have_content('Júnior')
+      expect(page).to have_content('4 vagas')
+      expect(page).to have_content('CLT')
+      expect(page).to have_link('Ver detalhes')
+    end
+
+    scenario 'and view job details' do
+      candidate = Candidate.create!(name: 'Gustavo', last_name: 'Carvalho', email: 'test@test.com', password:'123456')
+      Job.create!(title: 'Programador RoR',
+                  level: 'Júnior',
+                  number_of_vacancies: 4,
+                  salary: 3500,
+                  description: 'Programador Ruby on Rails para atuar em startup',
+                  abilities: 'CRUD, Git, Ruby, Ruby on Rails, Boa comunicação',
+                  deadline: '20/01/2020',
+                  start_date: '02/01/2020',
+                  location: 'Remoto',
+                  contract_type: 'CLT')
+
+      login_as candidate, scope: :candidate
+      visit root_path
+      click_on 'Vagas'
+      click_on 'Ver detalhes'
+
+      expect(page).to have_css('h1', text: 'Programador RoR')
+      expect(page).to have_content('Júnior')
+      expect(page).to have_content('R$ 3.500,00')
+      expect(page).to have_content('Programador Ruby on Rails para atuar em startup')
+      expect(page).to have_content('CRUD, Git, Ruby, Ruby on Rails, Boa comunicação')
+      expect(page).to have_content('02/01/2020')
+      expect(page).to have_content('20/01/2020')
+      expect(page).to have_content('Remoto')
+      expect(page).to have_content('CLT')
+      expect(page).to have_link('Voltar')
+      expect(page).to have_link('Aplicar para vaga')
+    end
   end
 end

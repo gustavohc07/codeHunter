@@ -25,4 +25,8 @@
   <%= link_to 'Editar Vaga' %>
   <%= link_to 'Excluir Vaga' %>
 <% end %>
+
+<% if candidate_signed_in? %>
+  <%= link_to 'Aplicar para vaga' %>
+<% end %>
 <div><%= link_to 'Voltar', jobs_path %></div>
