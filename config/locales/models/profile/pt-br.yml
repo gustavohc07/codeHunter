@@ -1,0 +1,20 @@
+pt-BR:
+  activerecord:
+    model:
+      profile: Perfil
+    attributes:
+      profile:
+        image: Imagem
+        name: Nome
+        last_name: Sobrenome
+        social_name: Nome Social
+        birthday: Data de Nascimento
+        about_yourself: Nos conte mais sobre você!
+        university: Universidade
+        graduation_course: Curso
+        year_of_graduation: Ano de Graduação
+        company: Empresa
+        role: Cargo
+        start_date: Data de Início
+        end_date: Data de Saída
+        experience_description: Nos conte mais sobre essa experiência
