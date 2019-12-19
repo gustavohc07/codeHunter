@@ -8,11 +8,11 @@
       </div>
       <div class="field">
         <%= f.label :name %> <br>
-        <%= f.text_field :name %>
+        <%= f.text_field :name, value: "#{current_candidate.name}" %>
       </div>
       <div class="field">
         <%= f.label :last_name %> <br>
-        <%= f.text_field :last_name %>
+        <%= f.text_field :last_name, value: "#{current_candidate.last_name}" %>
       </div>
       <div class="field">
         <%= f.label :social_name %> <br>
@@ -40,7 +40,7 @@
       </div>
       <div class="field">
         <%= f.label :year_of_graduation %> <br>
-        <%= f.number_field :year_of_graduation %>
+        <%= f.date_field :year_of_graduation %>
       </div>
     </div>
 

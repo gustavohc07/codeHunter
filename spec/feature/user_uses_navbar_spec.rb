@@ -144,6 +144,7 @@ feature 'User uses navbar' do
 
       expect(current_path).to eq jobs_path
     end
+
     xscenario 'and can see their job applications' do
       candidate = Candidate.create!(name: 'Gustavo', last_name: 'Carvalho', email: 'test@test.com', password:'123456')
 
@@ -153,14 +154,16 @@ feature 'User uses navbar' do
 
       expect(current_path).to eq banana_path
     end
-    xscenario 'and can see their profile' do
+
+    scenario 'and can see their profile' do
       candidate = Candidate.create!(name: 'Gustavo', last_name: 'Carvalho', email: 'test@test.com', password:'123456')
+      Profile.create!(candidate: candidate)
 
       login_as candidate, scope: :candidate
       visit root_path
-      click_on 'Meu perfil'
+      click_on 'Meu Perfil'
 
-      expect(current_path).to eq banana_path
+      expect(current_path).to eq profile_path(candidate)
     end
 
     scenario 'and can go back to home page' do
