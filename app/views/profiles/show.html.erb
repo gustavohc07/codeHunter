@@ -1,10 +1,4 @@
-<h1>
-  <% if current_candidate.name.blank? %>
-    <%= "Bem vindo ao seu perfil!" %>
-  <% else %>
-    <%= "Bem vindo ao seu perfil, #{current_candidate.name} #{current_candidate.last_name}!" %>
-<% end %>
-</h1>
+<h1>Bem vindo ao seu perfil!</h1>
 
 <% if @profile.image.attached?  %>
   <%= image_tag @profile.image %>
