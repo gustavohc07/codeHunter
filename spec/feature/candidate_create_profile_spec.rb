@@ -66,6 +66,7 @@ feature 'User as candidate can register his/her profile' do
     expect(page).to have_link('Editar meu perfil')
     expect(page).to have_link('Ir para vagas!')
   end
+
   xscenario 'and successfully with name from candidate' do
     candidate = Candidate.create!(name: 'Gustavo', last_name: 'Carvalho', email: 'test@test.com', password: '123456')
 
@@ -139,5 +140,15 @@ feature 'User as candidate can register his/her profile' do
 
     expect(current_path).to eq profile_path(candidate)
     expect(page).to have_content('Meu Perfil')
+  end
+
+  scenario 'and got to edit page if try to create another profile' do
+    candidate = Candidate.create!(name: 'Gustavo', last_name: 'Carvalho', email: 'test@test.com', password: '123456')
+    Profile.create!(candidate: candidate)
+
+    login_as candidate, scope: :candidate
+    visit new_profile_path
+
+    expect(current_path).to eq edit_profile_path(candidate)
   end
 end

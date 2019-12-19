@@ -62,6 +62,18 @@ feature 'Candidate edit profile' do
     expect(page).to have_content('01/12/2015')
     expect(page).to have_content('Nos conte mais sobre essa experiência')
     expect(page).to have_content('Auxiliou em obras.')
+  end
+  scenario 'and try to access another profile from edit path' do
+    candidate = Candidate.create!(email: 'test@test.com', password: '123456')
+    profile = Profile.create!(social_name: 'Test', birthday: '20/01/1994',
+                              university: 'UFU',
+                              company: 'Test', candidate: candidate)
+    other_candidate = Candidate.create!(email:'test2@test.com', password: '123456')
+    other_profile = Profile.create!(candidate: other_candidate)
 
+    login_as candidate, scope: :candidate
+    visit edit_profile_path(other_profile)
+
+    expect(current_path).to eq profile_path(profile)
   end
 end
