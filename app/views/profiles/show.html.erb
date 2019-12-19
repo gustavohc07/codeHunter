@@ -1,0 +1,11 @@
+<h1>Bem vindo ao seu perfil!</h1>
+
+<% if @profile.image.attached?  %>
+  <%= image_tag @profile.image %>
+<% end %>
+
+<%= render partial: 'profile', locals: {profile: @profile} %>
+
+<%= link_to 'Editar meu perfil', edit_profile_path(current_candidate.profile) %>
+
+<%= link_to 'Ir para vagas!', jobs_path %>

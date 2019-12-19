@@ -1,0 +1,79 @@
+<div>
+
+  <div>
+    <h2>
+      <%= t('.personal_information') %>
+    </h2>
+    <div>
+      <div>
+        <h3><%= t('.name') %></h3>
+        <p><%= profile.name %></p>
+      </div>
+      <div>
+        <h3><%= t('.last_name') %></h3>
+        <p><%= profile.last_name %></p>
+      </div>
+      <div>
+        <h3><%= t('.social_name') %></h3>
+        <p><%= profile.social_name %></p>
+      </div>
+      <div>
+        <h3><%= t('.birthday') %></h3>
+        <p><%= l(profile.birthday) unless profile.birthday.blank? %></p>
+      </div>
+      <div>
+        <h3><%= t('.about_yourself') %></h3>
+        <p><%= profile.about_yourself %></p>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <h2>
+      <%= t('.formation') %>
+    </h2>
+    <div>
+      <div>
+        <h3><%= t('.university') %></h3>
+        <p><%= profile.university %></p>
+      </div>
+      <div>
+        <h3><%= t('.graduation_course') %></h3>
+        <p><%= profile.graduation_course %></p>
+      </div>
+      <div>
+        <h3><%= t('.year_of_graduation') %></h3>
+        <p><%= l(profile.year_of_graduation) unless profile.year_of_graduation.blank? %></p>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <h2>
+      <%= t('.profissional_experience') %>
+    </h2>
+    <div>
+      <div>
+        <h3><%= t('.company') %></h3>
+        <p><%= profile.company %></p>
+      </div>
+      <div>
+        <h3><%= t('.role') %></h3>
+        <p><%= profile.role %></p>
+      </div>
+      <div>
+        <h3><%= t('.start_date') %></h3>
+        <p><%= l(profile.start_date) unless profile.start_date.blank? %></p>
+      </div>
+      <div>
+        <h3><%= t('.end_date') %></h3>
+        <p><%= l(profile.end_date) unless profile.end_date.blank? %></p>
+      </div>
+      <div>
+        <h3><%= t('.experience_description') %></h3>
+        <p><%= profile.experience_description %></p>
+      </div>
+    </div>
+  </div>
+
+</div>
