@@ -8,27 +8,61 @@ feature 'User as candidate can register his/her profile' do
     visit root_path
     click_on 'Criar Perfil'
 
-    expect(current_path).to eq new_profile_path
-    within 'Informações Pessoais' do
-      #attach_file 'Imagem'
-      expect(page).to have_content(candidate.name)
-      expect(page).to have_content(candidate.last_name)
-      fill_in 'Nome Social', with: ''
-      fill_in 'Data de nascimento', with: '20/01/1994'
-      fill_in 'Nos conte mais sobre você!', with: '25 anos, engenheiro civil migrando para programação.'
-    end
-    within 'Formação' do
-      fill_in 'Universidade', with: 'Universidade Federal de Uberlândia'
-      fill_in 'Curso', with: 'Engenharia Civil'
-      fill_in 'Ano de Graduação', with: 2017
-    end
-    within 'Experiência Profissional' do
-      fill_in 'Empresa', with: 'Geometa'
-      fill_in 'Cargo', with: 'Estagiário'
-      fill_in 'Data de Início', with: '01/01/2015'
-      fill_in 'Data de Saída', with: '01/12/2015'
-      fill_in 'Nos conte mais sobre essa experiência', with: 'Auxiliou em obras.'
-    end
-    click_on 'Atualizar Perfil'
+    expect(page).to have_css('h2', text: 'Informações Pessoais')
+    attach_file 'Imagem', Rails.root.join('spec', 'support', 'image.png')
+    fill_in 'Nome', with: 'Gustavo'
+    fill_in 'Sobrenome', with: 'Carvalho'
+    fill_in 'Nome Social', with: 'Gustavo'
+    fill_in 'Data de Nascimento', with: '20/01/1994'
+    fill_in 'Nos conte mais sobre você!', with: '25 anos, engenheiro civil migrando para programação.'
+
+    expect(page).to have_css('h2', text: 'Formação')
+    fill_in 'Universidade', with: 'Universidade Federal de Uberlândia'
+    fill_in 'Curso', with: 'Engenharia Civil'
+    fill_in 'Ano de Graduação', with: 2017
+
+    expect(page).to have_css('h2', text: 'Experiência Profissional')
+    fill_in 'Empresa', with: 'Geometa'
+    fill_in 'Cargo', with: 'Estagiário'
+    fill_in 'Data de Início', with: '01/01/2015'
+    fill_in 'Data de Saída', with: '01/12/2015'
+    fill_in 'Nos conte mais sobre essa experiência', with: 'Auxiliou em obras.'
+    click_on 'Enviar'
+
+    expect(page).to have_content('Gustavo Carvalho')
+    expect(page).to have_content('Informações Pessoais')
+    expect(page).to have_content('Nome')
+    expect(page).to have_content('Gustavo')
+    expect(page).to have_content('Sobrenome')
+    expect(page).to have_content('Carvalho')
+    expect(page).to have_content('Nome Social')
+    expect(page).to have_content('Gustavo')
+    expect(page).to have_content('Data de Nascimento')
+    expect(page).to have_content('20/01/1994')
+    expect(page).to have_content('Nos conte mais sobre você!')
+    expect(page).to have_content('25 anos, engenheiro civil migrando para programação.')
+
+    expect(page).to have_content('Formação')
+    expect(page).to have_content('Universidade')
+    expect(page).to have_content('Universidade Federal de Uberlândia')
+    expect(page).to have_content('Curso')
+    expect(page).to have_content('Engenharia Civil')
+    expect(page).to have_content('Ano de Graduação')
+    expect(page).to have_content('2017')
+
+    expect(page).to have_content('Experiência Profissional')
+    expect(page).to have_content('Empresa')
+    expect(page).to have_content('Geometa')
+    expect(page).to have_content('Cargo')
+    expect(page).to have_content('Estagiário')
+    expect(page).to have_content('Data de Início')
+    expect(page).to have_content('01/01/2015')
+    expect(page).to have_content('Data de Saída')
+    expect(page).to have_content('01/12/2015')
+    expect(page).to have_content('Nos conte mais sobre essa experiência')
+    expect(page).to have_content('Auxiliou em obras.')
+
+    expect(page).to have_link('Editar meu perfil')
+    expect(page).to have_link('Ir para vagas!')
   end
 end

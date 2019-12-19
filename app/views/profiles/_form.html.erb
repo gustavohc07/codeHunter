@@ -1,0 +1,74 @@
+<%= form_with model: profile, local: true do |f| %>
+  <div>
+    <div>
+      <h2><%= t('.personal_information') %></h2>
+      <div class="field">
+        <%= f.label :image%> <br>
+        <%= f.file_field :image %>
+      </div>
+      <div class="field">
+        <%= f.label :name %> <br>
+        <%= f.text_field :name %>
+      </div>
+      <div class="field">
+        <%= f.label :last_name %> <br>
+        <%= f.text_field :last_name %>
+      </div>
+      <div class="field">
+        <%= f.label :social_name %> <br>
+        <%= f.text_field :social_name %>
+      </div>
+      <div class="field">
+        <%= f.label :birthday %> <br>
+        <%= f.date_field :birthday %>
+      </div>
+      <div class="field">
+        <%= f.label :about_yourself %> <br>
+        <%= f.text_area :about_yourself %>
+      </div>
+    </div>
+
+    <div>
+      <h2><%= t('.formation') %></h2>
+      <div class="field">
+        <%= f.label :university %> <br>
+        <%= f.text_field :university %>
+      </div>
+      <div class="field">
+        <%= f.label :graduation_course %> <br>
+        <%= f.text_field :graduation_course %>
+      </div>
+      <div class="field">
+        <%= f.label :year_of_graduation %> <br>
+        <%= f.number_field :year_of_graduation %>
+      </div>
+    </div>
+
+    <div>
+      <h2><%= t('.profissional_experience') %></h2>
+      <div class="field">
+        <%= f.label :company  %> <br>
+        <%= f.text_field :company %>
+      </div>
+      <div class="field">
+        <%= f.label :role  %> <br>
+        <%= f.text_field :role %>
+      </div>
+      <div class="field">
+        <%= f.label :start_date  %> <br>
+        <%= f.date_field :start_date %>
+      </div>
+      <div class="field">
+        <%= f.label :end_date %> <br>
+        <%= f.date_field :end_date %>
+      </div>
+      <div class="field">
+        <%= f.label :experience_description %> <br>
+        <%= f.text_area :experience_description %>
+      </div>
+    </div>
+    <div class="field">
+      <%= f.submit 'Enviar' %>
+    </div>
+  </div>
+<% end %>
