@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'Candidate apply to a listed job' do
-  context 'and profile is not complete' do
+  context 'and profile is not complete or non existent' do
     scenario 'and go back to edit profile to complete it' do
       headhunter = Headhunter.create!(email: 'test@test.com', password: '123456')
       job = Job.create!(title: 'Programador RoR',
@@ -24,6 +24,31 @@ feature 'Candidate apply to a listed job' do
       click_on 'Aplicar para vaga'
 
       expect(current_path).to eq edit_profile_path(candidate.profile)
+      expect(page).to have_content('Preencha seu perfil para aplicar à vaga!')
+    end
+
+    scenario 'and go to register profile page' do
+      headhunter = Headhunter.create!(email: 'test@test.com', password: '123456')
+      job = Job.create!(title: 'Programador RoR',
+                        level: 'Júnior',
+                        number_of_vacancies: 4,
+                        salary: 3500,
+                        description: 'Programador Ruby on Rails para atuar em startup',
+                        abilities: 'CRUD, Git, Ruby, Ruby on Rails, Boa comunicação',
+                        deadline: '20/01/2020',
+                        start_date: '02/01/2020',
+                        location: 'Remoto',
+                        contract_type: 'CLT',
+                        headhunter: headhunter)
+      candidate = Candidate.create!(email: 'candidate@test.com', password: '123456')
+
+      login_as candidate, scope: :candidate
+      visit jobs_path
+      click_on 'Ver detalhes'
+      click_on 'Aplicar para vaga'
+
+      expect(current_path).to eq new_profile_path
+      expect(page).to have_content('Vocẽ deve possuir um perfil para aplicar à vaga')
     end
   end
 
