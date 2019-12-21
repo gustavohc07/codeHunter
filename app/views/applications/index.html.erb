@@ -1,6 +1,10 @@
-<% current_candidate.applications.each do |application| %>
-  <div>
-    <%= link_to application.job.title, application  %> <br>
-    <p><%= application.job.deadline - application.job.start_date %> dias restantes </p>
-  </div>
-<%end %>
+<% if @application.any? %>
+  <% current_candidate.applications.each do |application| %>
+    <div>
+      <h2> <%= link_to application.job.title, application  %> </h2> <br>
+      <p><%= application.job.deadline - application.job.start_date %> dias restantes </p>
+    </div>
+  <% end %>
+<% else %>
+  <h2>Não há nenhuma inscrição no momento. <%= link_to 'Clique aqui', jobs_path %> para procurar vagas!</h2>
+<% end %>

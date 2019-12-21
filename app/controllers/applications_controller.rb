@@ -29,6 +29,13 @@ class ApplicationsController < ApplicationController
     end
   end
 
+  def destroy
+    @application = Application.find(params[:id])
+    @application.destroy
+    flash[:notice] = 'Poxa! Que pena que você não poderá participar desse processo! :('
+    redirect_to applications_path
+  end
+
   private
 
   def application_params
