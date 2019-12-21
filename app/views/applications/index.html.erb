@@ -1,0 +1,6 @@
+<% current_candidate.applications.each do |application| %>
+  <div>
+    <%= link_to application.job.title, application  %> <br>
+    <p><%= application.job.deadline - application.job.start_date %> dias restantes </p>
+  </div>
+<%end %>

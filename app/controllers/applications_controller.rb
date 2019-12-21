@@ -1,9 +1,18 @@
 class ApplicationsController < ApplicationController
   before_action :authenticate_candidate!
   before_action :check_profile, only: [:show, :new, :create, :edit, :update]
+  before_action :has_applied?, only: [:new, :create]
+
+  def index
+    @application = Application.where(candidate_id: current_candidate)
+  end
 
   def show
     @application = Application.find(params[:id])
+    unless current_candidate == @application.candidate
+      redirect_to jobs_path
+      return
+    end
   end
 
   def new
@@ -12,10 +21,11 @@ class ApplicationsController < ApplicationController
 
   def create
     @application = Application.new(application_params)
-    @job = Job.find(params[:application][:job_id])
-    if @application.save!
+    @application.job = Job.find(params[:job_id])
+    @application.candidate = current_candidate
+    if @application.save
       flash[:notice] = 'Inscrição realizada com sucesso!'
-      redirect_to @application
+      redirect_to application_path(@application)
     end
   end
 
@@ -23,7 +33,6 @@ class ApplicationsController < ApplicationController
 
   def application_params
     params.require(:application).permit(:message, :candidate_id, :job_id)
-                                .merge(candidate: current_candidate)
   end
 
   def check_profile
@@ -37,4 +46,11 @@ class ApplicationsController < ApplicationController
       redirect_to new_profile_path, alert: 'Vocẽ deve possuir um perfil para aplicar à vaga'
     end
   end
+
+  def has_applied?
+    if Application.where(candidate_id: current_candidate.id, job_id: params[:job_id]).exists?
+      redirect_to applications_path, alert: "Voce já está inscrito nessa vaga"
+    end
+  end
+
 end
