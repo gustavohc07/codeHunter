@@ -1,0 +1,9 @@
+<h1><%= t('.apply_congrats') %></h1>
+
+
+<%= form_with model: @application, local: true do |f| %>
+  <%= f.hidden_field :job_id %>
+  <%= f.label :message, 'Diga ao CodeHunter o por que voce e ideal para a vaga! :)' %>
+  <%= f.text_area :message %>
+  <%= f.submit 'Candidatar!' %>
+<% end %>

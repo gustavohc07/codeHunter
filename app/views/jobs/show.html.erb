@@ -27,7 +27,7 @@
 <% end %>
 
 <% if candidate_signed_in? %>
-  <%= link_to 'Aplicar para vaga', new_application_path %>
+  <%= link_to 'Aplicar para vaga', new_application_path(job_id: @job) %>
 <% end %>
 <br>
 <div><%= link_to 'Voltar', jobs_path %></div>
