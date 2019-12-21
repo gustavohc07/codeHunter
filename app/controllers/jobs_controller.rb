@@ -31,6 +31,7 @@ class JobsController < ApplicationController
                                 :salary, :description, :abilities,
                                 :deadline, :start_date, :location,
                                 :contract_type)
+                        .merge(headhunter: current_headhunter)
   end
 
   def authorize_headhunter!

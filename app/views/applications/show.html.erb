@@ -1,0 +1,13 @@
+<h2><%= @application.job.title %></h2>
+<br>
+<h2>Mensagem ao CodeHunter:</h2>
+<br>
+<%= @application.message %>
+<%= link_to 'Editar mensagem' %>
+<br>
+<%= link_to 'Ir para descrição da vaga', job_path(@application.job_id) %>
+<br>
+<%= link_to 'Cancelar Inscrição', application_path, method: :delete %>
+
+
+

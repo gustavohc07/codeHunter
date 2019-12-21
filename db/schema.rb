@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_18_145738) do
+ActiveRecord::Schema.define(version: 2019_12_20_004828) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -31,6 +31,16 @@ ActiveRecord::Schema.define(version: 2019_12_18_145738) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "applications", force: :cascade do |t|
+    t.integer "job_id", null: false
+    t.integer "candidate_id", null: false
+    t.string "message"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["candidate_id"], name: "index_applications_on_candidate_id"
+    t.index ["job_id"], name: "index_applications_on_job_id"
   end
 
   create_table "candidates", force: :cascade do |t|
@@ -72,6 +82,8 @@ ActiveRecord::Schema.define(version: 2019_12_18_145738) do
     t.string "contract_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "headhunter_id"
+    t.index ["headhunter_id"], name: "index_jobs_on_headhunter_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -95,5 +107,8 @@ ActiveRecord::Schema.define(version: 2019_12_18_145738) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "applications", "candidates"
+  add_foreign_key "applications", "jobs"
+  add_foreign_key "jobs", "headhunters"
   add_foreign_key "profiles", "candidates"
 end

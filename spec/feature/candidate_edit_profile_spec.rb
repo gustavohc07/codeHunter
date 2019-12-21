@@ -76,4 +76,22 @@ feature 'Candidate edit profile' do
 
     expect(current_path).to eq profile_path(profile)
   end
+
+  scenario 'and edit with another user registered' do
+    candidate = Candidate.create!(email: 'test@test.com', password: '123456')
+    profile = Profile.create!(social_name: 'Test', birthday: '20/01/1994',
+                              university: 'UFU',
+                              company: 'Test', candidate: candidate)
+    other_candidate = Candidate.create!(email:'test2@test.com', password: '123456')
+    other_profile = Profile.create!(candidate: other_candidate)
+
+    login_as other_candidate, scope: :candidate
+    visit edit_profile_path(other_profile)
+
+    fill_in 'Nome', with: 'Gustavo'
+    click_on 'Enviar'
+
+    expect(current_path).to eq profile_path(other_profile)
+    expect(page).to have_content('Gustavo')
+  end
 end

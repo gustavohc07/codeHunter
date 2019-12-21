@@ -17,6 +17,7 @@ feature 'User view jobs listed' do
     end
 
     scenario 'successfully with job listed' do
+      headhunter = Headhunter.create!(email: 'test@test.com', password: '123456')
       Job.create!(title: 'Programador RoR',
                   level: 'Júnior',
                   number_of_vacancies: 4,
@@ -26,7 +27,8 @@ feature 'User view jobs listed' do
                   deadline: '20/01/2020',
                   start_date: '02/01/2020',
                   location: 'Remoto',
-                  contract_type: 'CLT')
+                  contract_type: 'CLT',
+                  headhunter: headhunter)
 
       visit root_path
       click_on 'Vagas'
@@ -40,6 +42,7 @@ feature 'User view jobs listed' do
     end
 
     scenario 'and must be logged in to view job details' do
+      headhunter = Headhunter.create!(email: 'test@test.com', password: '123456')
       Job.create!(title: 'Programador RoR',
                   level: 'Júnior',
                   number_of_vacancies: 4,
@@ -49,7 +52,8 @@ feature 'User view jobs listed' do
                   deadline: '20/01/2020',
                   start_date: '02/01/2020',
                   location: 'Remoto',
-                  contract_type: 'CLT')
+                  contract_type: 'CLT',
+                  headhunter: headhunter)
 
       visit root_path
       click_on 'Vagas'
@@ -59,16 +63,18 @@ feature 'User view jobs listed' do
     end
 
     scenario 'and cannot go do direct job path' do
+      headhunter = Headhunter.create!(email: 'test@test.com', password: '123456')
       job = Job.create!(title: 'Programador RoR',
-                  level: 'Júnior',
-                  number_of_vacancies: 4,
-                  salary: 3500,
-                  description: 'Programador Ruby on Rails',
-                  abilities: 'CRUD, Git, Ruby, Ruby on Rails',
-                  deadline: '20/01/2020',
-                  start_date: '02/01/2020',
-                  location: 'Remoto',
-                  contract_type: 'CLT')
+                        level: 'Júnior',
+                        number_of_vacancies: 4,
+                        salary: 3500,
+                        description: 'Programador Ruby on Rails',
+                        abilities: 'CRUD, Git, Ruby, Ruby on Rails',
+                        deadline: '20/01/2020',
+                        start_date: '02/01/2020',
+                        location: 'Remoto',
+                        contract_type: 'CLT',
+                        headhunter: headhunter)
 
       visit job_path(job)
 
@@ -110,7 +116,8 @@ feature 'User view jobs listed' do
                   deadline: '20/01/2020',
                   start_date: '02/01/2020',
                   location: 'Remoto',
-                  contract_type: 'CLT')
+                  contract_type: 'CLT',
+                  headhunter: headhunter)
 
       login_as headhunter, scope: :headhunter
       visit root_path
@@ -141,7 +148,8 @@ feature 'User view jobs listed' do
                   deadline: '20/01/2020',
                   start_date: '02/01/2020',
                   location: 'Remoto',
-                  contract_type: 'CLT')
+                  contract_type: 'CLT',
+                  headhunter: headhunter)
 
       login_as headhunter, scope: :headhunter
       visit root_path
@@ -189,17 +197,19 @@ feature 'User view jobs listed' do
       expect(page). to have_link('Voltar')
     end
     scenario 'and view jobs listed' do
+      headhunter = Headhunter.create!(email: 'test@test.com', password: '123456')
       candidate = Candidate.create!(name: 'Gustavo', last_name: 'Carvalho', email: 'test@test.com', password:'123456')
       Job.create!(title: 'Programador RoR',
-                        level: 'Júnior',
-                        number_of_vacancies: 4,
-                        salary: 3500,
-                        description: 'Programador Ruby on Rails',
-                        abilities: 'CRUD, Git, Ruby, Ruby on Rails',
-                        deadline: '20/01/2020',
-                        start_date: '02/01/2020',
-                        location: 'Remoto',
-                        contract_type: 'CLT')
+                  level: 'Júnior',
+                  number_of_vacancies: 4,
+                  salary: 3500,
+                  description: 'Programador Ruby on Rails',
+                  abilities: 'CRUD, Git, Ruby, Ruby on Rails',
+                  deadline: '20/01/2020',
+                  start_date: '02/01/2020',
+                  location: 'Remoto',
+                  contract_type: 'CLT',
+                  headhunter: headhunter)
 
       login_as candidate, scope: :candidate
       visit root_path
@@ -214,6 +224,7 @@ feature 'User view jobs listed' do
 
     scenario 'and view job details' do
       candidate = Candidate.create!(name: 'Gustavo', last_name: 'Carvalho', email: 'test@test.com', password:'123456')
+      headhunter = Headhunter.create!(email: 'test@test.com', password: '123456')
       Job.create!(title: 'Programador RoR',
                   level: 'Júnior',
                   number_of_vacancies: 4,
@@ -223,7 +234,8 @@ feature 'User view jobs listed' do
                   deadline: '20/01/2020',
                   start_date: '02/01/2020',
                   location: 'Remoto',
-                  contract_type: 'CLT')
+                  contract_type: 'CLT',
+                  headhunter: headhunter)
 
       login_as candidate, scope: :candidate
       visit root_path
