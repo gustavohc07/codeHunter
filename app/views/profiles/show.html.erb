@@ -6,6 +6,7 @@
 
 <%= render partial: 'profile', locals: {profile: @profile} %>
 
-<%= link_to 'Editar meu perfil', edit_profile_path(current_candidate.profile) %>
-
+<% if candidate_signed_in? %>
+  <%= link_to 'Editar meu perfil', edit_profile_path(@profile) %>
+<% end %>
 <%= link_to 'Ir para vagas!', jobs_path %>

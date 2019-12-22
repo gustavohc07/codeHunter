@@ -15,3 +15,8 @@ pt-BR:
       finished_applications: Processos concluidos
       canceled_applications: Processos cancelados
       number_of_applications: Numero de inscritos
+    candidate_list:
+      candidates: Candidatos
+      full_name: Nome Completo
+      application_status: Status da Aplicacao
+      profile: Perfil
