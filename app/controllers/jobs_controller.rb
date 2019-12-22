@@ -1,6 +1,6 @@
 class JobsController < ApplicationController
   before_action :authorize_both!, only: [:show]
-  before_action :authorize_headhunter!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :authorize_headhunter!, only: [:new, :create, :edit, :update, :destroy, :view_headhunter_jobs]
 
   def index
     @jobs = Job.all
@@ -22,6 +22,10 @@ class JobsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def view_headhunter_jobs
+    @jobs = Job.where(headhunter_id: current_headhunter)
   end
 
   private
