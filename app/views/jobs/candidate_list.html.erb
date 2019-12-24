@@ -7,11 +7,11 @@
     <th><%= t('.application_status') %></th>
     <th><%= t('.profile') %></th>
   </tr>
+  <% @job.applications.each do |application| %>
   <tr>
-    <% @job.applications.each do |application| %>
       <td><%= "#{application.candidate.profile.name} #{application.candidate.profile.last_name}" %></td>
       <td>Em andamento</td>
-      <td><%= link_to 'Ver Perfil', application.candidate.profile %></td>
-    <% end %>
+      <td><%= link_to 'Ver Perfil', application %></td>
   </tr>
+  <% end %>
 </table>

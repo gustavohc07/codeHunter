@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     get 'myjobs', to: 'jobs#view_headhunter_jobs'
     get 'candidatelist', to: 'jobs#candidate_list'
   end
-  resources 'applications', only: [:index, :show, :destroy]
+  resources 'applications', only: [:index, :show, :destroy] do
+    resources 'messages', only: [:new, :create]
+  end
   resources 'profiles', only: [:new, :create, :show, :edit, :update]
 end
