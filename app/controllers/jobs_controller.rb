@@ -1,6 +1,6 @@
 class JobsController < ApplicationController
   before_action :authorize_both!, only: [:show]
-  before_action :authorize_headhunter!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :authorize_headhunter!, only: [:new, :create, :edit, :update, :destroy, :view_headhunter_jobs, :candidate_list]
 
   def index
     @jobs = Job.all
@@ -24,6 +24,15 @@ class JobsController < ApplicationController
     end
   end
 
+  def view_headhunter_jobs
+    @jobs = Job.where(headhunter_id: current_headhunter)
+  end
+
+  def candidate_list
+    @job = Job.find(params[:job_id])
+    @applications = Application.where(job_id: @job)
+  end
+
   private
 
   def job_params
@@ -31,7 +40,7 @@ class JobsController < ApplicationController
                                 :salary, :description, :abilities,
                                 :deadline, :start_date, :location,
                                 :contract_type)
-                        .merge(headhunter: current_headhunter)
+      .merge(headhunter: current_headhunter)
   end
 
   def authorize_headhunter!

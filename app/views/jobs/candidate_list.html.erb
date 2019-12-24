@@ -1,0 +1,17 @@
+<%= @job.title %>
+
+<table>
+  <caption><%= t('.candidates') %></caption>
+  <tr>
+    <th><%= t('.full_name') %></th>
+    <th><%= t('.application_status') %></th>
+    <th><%= t('.profile') %></th>
+  </tr>
+  <% @job.applications.each do |application| %>
+  <tr>
+      <td><%= "#{application.candidate.profile.name} #{application.candidate.profile.last_name}" %></td>
+      <td>Em andamento</td>
+      <td><%= link_to 'Ver Perfil', application %></td>
+  </tr>
+  <% end %>
+</table>

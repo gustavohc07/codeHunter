@@ -1,0 +1,7 @@
+<h1>Deixe um comentario</h1>
+
+<%= form_with model: [@application, @message], local: true do |f|%>
+  <%= f.label :comment, 'Comentário' %>
+  <%= f.text_area :comment%>
+  <%= f.submit 'Enviar' %>
+<% end %>

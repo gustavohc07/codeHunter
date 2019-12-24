@@ -7,7 +7,7 @@
         <div class="container__job-title"><%= "#{job.title} - #{pluralize(job.number_of_vacancies, 'vaga', 'vagas')}" %></div>
         <div class="container__job-level"><%= job.level %></div>
         <div class="container__job-contract_type"><%= job.contract_type %></div>
-        <div class="container__job-details"><%= link_to 'Ver detalhes', job %></div>
+        <div class="container__job-details"><%= link_to 'Ver detalhes', job  %></div>
       </div>
     <% end %>
   </div>
