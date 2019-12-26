@@ -10,7 +10,15 @@
   <% @job.applications.each do |application| %>
   <tr>
       <td><%= "#{application.candidate.profile.name} #{application.candidate.profile.last_name}" %></td>
-      <td>Em andamento</td>
+      <td>
+        <% if application.in_progress? %>
+          Em andamento
+        <% elsif application.highlighted? %>
+          Em destaque
+        <% else %>
+          Cancelado
+        <% end %>
+      </td>
       <td><%= link_to 'Ver Perfil', application %></td>
   </tr>
   <% end %>

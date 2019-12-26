@@ -1,5 +1,6 @@
 class ApplicationsController < ApplicationController
-  before_action :authenticate_candidate!, except: [:show]
+  before_action :authenticate_candidate!, except: [:show, :highlight, :cancel_highlight]
+  before_action :authenticate_headhunter!, only: [:highlight, :cancel_highlight]
   before_action :authorize_both!, only: [:show]
   before_action :check_profile, only: [:show, :new, :create, :edit, :update]
   before_action :has_applied?, only: [:new, :create]
@@ -38,12 +39,18 @@ class ApplicationsController < ApplicationController
     redirect_to applications_path
   end
 
-  def message
-    @message = @application.messages.build
+  def highlight
+    @application = Application.find(params[:application_id])
+    @application.highlighted!
+    flash[:notice] = 'Perfil destacado!'
+    redirect_to application_path(@application)
   end
 
-  def send_message
-
+  def cancel_highlight
+    @application = Application.find(params[:application_id])
+    @application.in_progress!
+    flash[:notice] = 'Retirado destaque do perfil'
+    redirect_to application_path(@application)
   end
 
   private

@@ -10,7 +10,12 @@
 <% if headhunter_signed_in? %>
   <%= render partial: 'profiles/profile', locals: {profile: @profile} %>
   <%= link_to 'Deixar Comentário',new_application_message_path(application_id: @application) %>
-  <%= link_to 'Favoritar' %>
+  <% if @application.in_progress? %>
+    <%= link_to 'Destacar Perfil', application_highlight_path(@application.id), method: :post %>
+  <% elsif @application.highlighted? %>
+    <%= link_to 'Cancelar Destaque', application_cancel_highlight_path(@application.id), method: :post %>
+  <% end %>
+  <%= link_to 'Voltar', job_candidatelist_path(@application) %>
 <% end %>
 
 <%= link_to 'Ir para descrição da vaga', job_path(@application.job_id) %>
