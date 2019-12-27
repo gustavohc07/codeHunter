@@ -7,10 +7,12 @@
     <div>
       <%= link_to 'Destacar Perfil', application_highlight_path(application.id), method: :post %> <br>
       <%= link_to 'Cancelar essa candidatura', new_application_feedback_path(application_id: application) %> <br>
+      <%= link_to 'Enviar Proposta', new_application_proposal_path(application_id: application) %> <br>
     </div>
   <% elsif application.highlighted? %>
     <div>
       <%= link_to 'Cancelar Destaque', application_cancel_highlight_path(application.id), method: :post %>
+      <%= link_to 'Enviar Proposta', new_application_proposal_path(application_id: application) %> <br>
     </div>
   <% end %>
   <%= link_to 'Voltar', job_candidatelist_path(application.job_id) %> <br>

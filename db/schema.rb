@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_26_145046) do
+ActiveRecord::Schema.define(version: 2019_12_27_205655) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -123,6 +123,18 @@ ActiveRecord::Schema.define(version: 2019_12_26_145046) do
     t.index ["candidate_id"], name: "index_profiles_on_candidate_id"
   end
 
+  create_table "proposals", force: :cascade do |t|
+    t.date "start_date"
+    t.integer "salary"
+    t.text "benefits"
+    t.text "bonus"
+    t.text "additional_info"
+    t.integer "application_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["application_id"], name: "index_proposals_on_application_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "applications", "candidates"
   add_foreign_key "applications", "jobs"
@@ -130,4 +142,5 @@ ActiveRecord::Schema.define(version: 2019_12_26_145046) do
   add_foreign_key "jobs", "headhunters"
   add_foreign_key "messages", "applications"
   add_foreign_key "profiles", "candidates"
+  add_foreign_key "proposals", "applications"
 end

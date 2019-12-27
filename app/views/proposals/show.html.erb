@@ -1,0 +1,28 @@
+<h1>Proposta para <%= @proposal.application.candidate.profile.full_name %></h1>
+
+<div>
+  <%= t('.start_date') %>
+  <%= l(@proposal.start_date) %>
+</div>
+
+<div>
+  <%= t('.salary') %>
+  <%= number_to_currency(@proposal.salary) %>
+</div>
+
+<div>
+  <%= t('.benefits') %>
+  <%= @proposal.benefits %>
+</div>
+
+<div>
+  <%= t('.bonus') %>
+  <%= @proposal.bonus %>
+</div>
+
+<div>
+  <%= t('.additional_info') %>
+  <%= @proposal.additional_info %>
+</div>
+
+<%= link_to 'Voltar', application_path(@proposal.application) %>

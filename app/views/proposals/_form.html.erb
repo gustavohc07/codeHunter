@@ -1,0 +1,25 @@
+<%= form_with model: [application, proposal], local: true do |f| %>
+  <div>
+    <%= f.label :start_date %>
+    <%= f.date_field :start_date %>
+  </div>
+  <div>
+    <%= f.label :salary %>
+    <%= f.number_field :salary %>
+  </div>
+  <div>
+    <%= f.label :benefits %>
+    <%= f.text_field :benefits %>
+  </div>
+  <div>
+    <%= f.label :bonus %>
+    <%= f.text_field :bonus %>
+  </div>
+  <div>
+    <%= f.label :additional_info %>
+    <%= f.text_field :additional_info %>
+  </div>
+  <div>
+    <%= f.submit 'Enviar' %>
+  </div>
+<% end %>
