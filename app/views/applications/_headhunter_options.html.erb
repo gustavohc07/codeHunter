@@ -1,0 +1,17 @@
+<% if headhunter_signed_in? %>
+  <%= render partial: 'profiles/profile', locals: {profile: @profile} %>
+  <div>
+    <%= link_to 'Deixar Comentário',new_application_message_path(application_id: application) %>
+  </div>
+  <% if application.in_progress? %>
+    <div>
+      <%= link_to 'Destacar Perfil', application_highlight_path(application.id), method: :post %> <br>
+      <%= link_to 'Cancelar essa candidatura', new_application_feedback_path(application_id: application) %> <br>
+    </div>
+  <% elsif application.highlighted? %>
+    <div>
+      <%= link_to 'Cancelar Destaque', application_cancel_highlight_path(application.id), method: :post %>
+    </div>
+  <% end %>
+  <%= link_to 'Voltar', job_candidatelist_path(application.job_id) %> <br>
+<% end %>

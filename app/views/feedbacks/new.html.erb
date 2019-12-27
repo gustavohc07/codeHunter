@@ -1,0 +1,18 @@
+<h1>De um feedback à <%= @application.candidate.profile.full_name %>!</h1> <br>
+
+<%= form_with model: [@application, @feedback], local: true do |f| %>
+  <% if @feedback.errors.any? %>
+    <h2>Poxa, deixe um feedback para o candidato!</h2>
+    <ul>
+      <% @feedback.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <br>
+
+  <%= f.label :feedback_message %> <br>
+  <%= f.text_area :feedback_message %> <br>
+  <%= f.submit 'Enviar' %>
+<% end %>

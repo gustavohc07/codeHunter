@@ -1,0 +1,10 @@
+<h1><%= @application.job.title %></h1>
+
+
+<%= form_with model: @application, url: job_applications_path , local: true do |f| %>
+  <div>
+    <%= f.label :message, 'Diga ao CodeHunter o por que voce e ideal para a vaga! :)' %> <br>
+    <%= f.text_area :message %>
+  </div>
+  <%= f.submit 'Candidatar!' %>
+<% end %>

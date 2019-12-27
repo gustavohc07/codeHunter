@@ -9,3 +9,14 @@ pt-BR:
       location: Região de atuação
       contract_type: Tipo de contrato
       number_of_vacancies: Número de vagas
+    view_headhunter_jobs:
+      welcome_to_my_jobs: Meus Processos Seletivos
+      on_going_applications: Processos em andamento
+      finished_applications: Processos concluidos
+      canceled_applications: Processos cancelados
+      number_of_applications: Numero de inscritos
+    candidate_list:
+      candidates: Candidatos
+      full_name: Nome Completo
+      application_status: Status da Aplicacao
+      profile: Perfil

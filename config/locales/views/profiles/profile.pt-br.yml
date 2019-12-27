@@ -18,4 +18,6 @@ pt-BR:
       start_date: Data de Início
       end_date: Data de Saída
       experience_description: Nos conte mais sobre essa experiência
+    show:
+      leave_message: Deixar Comentário
 

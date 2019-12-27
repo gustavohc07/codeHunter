@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  before_action :authenticate_candidate!
+  before_action :authenticate_candidate!, except: [:show]
   before_action :has_profile?, only: [:new, :create]
   before_action :profile_lock, only: [:show, :edit, :update]
 
@@ -26,8 +26,10 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    @profile = Profile.update(profile_params)
+    @profile = Profile.find(params[:id])
+    if @profile.update(profile_params)
     redirect_to current_candidate.profile
+    end
   end
 
   private
@@ -47,8 +49,10 @@ class ProfilesController < ApplicationController
   end
 
   def profile_lock
-    if profile_path != profile_path(current_candidate.profile)
-      redirect_to profile_path(current_candidate.profile)
+    if candidate_signed_in?
+      if profile_path != profile_path(current_candidate.profile)
+        redirect_to profile_path(current_candidate.profile)
+      end
     end
   end
 end

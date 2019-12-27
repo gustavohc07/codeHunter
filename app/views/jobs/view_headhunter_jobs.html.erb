@@ -1,0 +1,17 @@
+<h1><%= t('.welcome_to_my_jobs') %></h1>
+
+<h2><%=t('.on_going_applications') %></h2>
+
+<% @jobs.each do |job| %>
+  <div>
+    <h3>
+      <%= link_to job.title, job_candidatelist_path(job) %>
+    </h3>
+    <h4><%= t('.number_of_applications') %></h4>
+    <%= pluralize(job.applications.count, 'inscrito', 'inscritos') %>
+  </div>
+<% end %>
+
+<h2><%=t('.finished_applications') %></h2>
+
+<h2><%=t('.canceled_applications') %></h2>
