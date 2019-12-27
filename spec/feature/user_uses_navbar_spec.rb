@@ -102,14 +102,14 @@ feature 'User uses navbar' do
       expect(current_path).to eq banana_path
     end
 
-    xscenario 'and can go to my listed jobs page' do
+    scenario 'and can go to my listed jobs page' do
       headhunter = Headhunter.create!(email:'test@test.com', password: '1123456')
 
       login_as headhunter, scope: :headhunter
       visit root_path
       click_on 'Minhas Vagas'
 
-      expect(current_path).to eq banana_path
+      expect(current_path).to eq job_myjobs_path(headhunter)
     end
   end
 

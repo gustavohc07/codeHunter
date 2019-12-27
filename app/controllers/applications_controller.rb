@@ -1,5 +1,5 @@
 class ApplicationsController < ApplicationController
-  before_action :authenticate_candidate!, except: [:show, :highlight, :cancel_highlight]
+  before_action :authenticate_candidate!, only: [:index, :new, :create, :destroy]
   before_action :authenticate_headhunter!, only: [:highlight, :cancel_highlight]
   before_action :authorize_both!, only: [:show]
   before_action :check_profile, only: [:show, :new, :create, :edit, :update]
@@ -64,7 +64,7 @@ class ApplicationsController < ApplicationController
       if current_candidate.profile
         current_candidate.profile.attributes.each do |elem|
           if elem[1].blank?
-            redirect_to edit_profile_path(current_candidate.profile), alert: 'Preencha seu perfil para aplicar à vaga!' and return
+            redirect_to(edit_profile_path(current_candidate.profile), alert: 'Preencha seu perfil para aplicar à vaga!') && break
           end
         end
       else

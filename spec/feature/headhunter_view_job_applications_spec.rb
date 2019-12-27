@@ -255,7 +255,4 @@ feature "Headhunter/Codehunter view job applications" do
     expect(page).not_to have_content('Bem vindo ao seu perfil!')
     expect(page).not_to have_content('Thiago Carvalho')
   end
-  xscenario 'and change application status' do
-
-  end
 end

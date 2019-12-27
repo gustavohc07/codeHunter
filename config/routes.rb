@@ -8,9 +8,10 @@ Rails.application.routes.draw do
     get 'candidatelist', to: 'jobs#candidate_list'
   end
   resources 'applications', only: [:index, :show, :destroy] do
+    resources 'messages', only: [:new, :create]
+    resources 'feedbacks', only: [:new, :create]
     post 'highlight', to: 'applications#highlight'
     post 'cancel_highlight', to: 'applications#cancel_highlight'
-    resources 'messages', only: [:new, :create]
   end
   resources 'profiles', only: [:new, :create, :show, :edit, :update]
 end
