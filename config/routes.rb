@@ -14,6 +14,9 @@ Rails.application.routes.draw do
     post 'highlight', to: 'applications#highlight'
     post 'cancel_highlight', to: 'applications#cancel_highlight'
   end
-  resources 'proposals', only: [:index]
+  resources 'proposals', only: [:index] do
+    get 'accept', to: 'proposals#new_accept'
+    post 'accept', to: 'proposals#accept'
+  end
   resources 'profiles', only: [:new, :create, :show, :edit, :update]
 end

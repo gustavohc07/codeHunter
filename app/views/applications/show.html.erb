@@ -9,7 +9,7 @@
 <% end %>
 
 <div>
-<% if @application.proposal %>
+<% if @application.proposal && candidate_signed_in? %>
   <h2>Você tem uma proposta para essa candidatura!</h2>
   <%= link_to 'Ver Proposta', application_proposal_path(@application, @application.proposal) %>
 <%  end %>

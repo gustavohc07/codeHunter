@@ -4,13 +4,17 @@
     <tr>
       <th>Titulo do trabalho</th>
       <th>Data de Inicio</th>
+      <th>Status</th>
     </tr>
     <% @proposals.each do |proposal| %>
       <tr>
         <td><%= link_to proposal.application.job.title, application_proposal_path(proposal.application_id, proposal.id) %></td>
         <td><%= l(proposal.start_date) %></td>
-        <td><%= link_to 'Aceitar' %></td>
-        <td><%= link_to 'Recusar' %></td>
+        <td><%= t(proposal.status) %></td>
+        <% if proposal.status == 'pending' %>
+          <td><%= link_to 'Aceitar', proposal_accept_path(proposal) %></td>
+          <td><%= link_to 'Recusar' %></td>
+        <% end %>
       </tr>
     <% end %>
   </table>
