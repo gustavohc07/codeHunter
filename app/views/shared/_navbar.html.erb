@@ -13,6 +13,7 @@
   <%= link_to t('.about_us') %>
   <%= link_to t('.jobs'), jobs_path %>
   <%= link_to t('.my_applications'), applications_path %>
+  <%= link_to t('.my_proposals'), proposals_path %>
   <% if current_candidate.profile != nil %>
     <%= link_to t('.profile'), profile_path(current_candidate.profile) %>
     <% else %>

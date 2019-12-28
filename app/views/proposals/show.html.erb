@@ -25,4 +25,10 @@
   <%= @proposal.additional_info %>
 </div>
 
-<%= link_to 'Voltar', application_path(@proposal.application) %>
+<% if headhunter_signed_in? %>
+  <%= link_to 'Voltar', application_path(@proposal.application) %>
+<% elsif candidate_signed_in? %>
+  <%= link_to 'Aceitar' %>
+  <%= link_to 'Recusar' %>
+  <%= link_to 'Voltar', proposals_path %>
+<% end %>

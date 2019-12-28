@@ -1,0 +1,19 @@
+<h1>Propostas Recebidas</h1>
+<% if @proposals.any? %>
+  <table>
+    <tr>
+      <th>Titulo do trabalho</th>
+      <th>Data de Inicio</th>
+    </tr>
+    <% @proposals.each do |proposal| %>
+      <tr>
+        <td><%= link_to proposal.application.job.title, application_proposal_path(proposal.application_id, proposal.id) %></td>
+        <td><%= l(proposal.start_date) %></td>
+        <td><%= link_to 'Aceitar' %></td>
+        <td><%= link_to 'Recusar' %></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <h2>Não há propostas, ainda, para as suas candidaturas.</h2>
+<% end %>

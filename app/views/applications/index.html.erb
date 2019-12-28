@@ -3,6 +3,10 @@
     <div>
       <h2> <%= link_to application.job.title, application  %> </h2> <br>
       <p><%= application.job.deadline - application.job.start_date %> dias restantes </p>
+      <% if application.proposal %>
+        <p>Você possui uma proposta para essa inscrição!</p>
+        <%= link_to 'Ver Proposta', application_proposal_path(application, application.proposal) %>
+      <% end %>
     </div>
   <% end %>
 <% else %>

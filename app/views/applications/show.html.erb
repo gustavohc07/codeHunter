@@ -8,6 +8,12 @@
   </div>
 <% end %>
 
+<div>
+<% if @application.proposal %>
+  <h2>Você tem uma proposta para essa candidatura!</h2>
+  <%= link_to 'Ver Proposta', application_proposal_path(@application, @application.proposal) %>
+<%  end %>
+</div>
 
 <h2>Mensagem ao CodeHunter:</h2>
 <br>

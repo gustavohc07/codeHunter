@@ -2,6 +2,9 @@ class ProposalsController < ApplicationController
   before_action :authenticate_headhunter!, only: [:new, :create]
 
   def index
+    @applications = Application.where(candidate_id: current_candidate)
+    @proposals = Proposal.where(application_id: @applications)
+
   end
 
   def show
