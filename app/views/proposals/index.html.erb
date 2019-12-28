@@ -13,7 +13,7 @@
         <td><%= t(proposal.status) %></td>
         <% if proposal.status == 'pending' %>
           <td><%= link_to 'Aceitar', proposal_accept_path(proposal) %></td>
-          <td><%= link_to 'Recusar' %></td>
+          <td><%= link_to 'Recusar', proposal_decline_path(proposal) %></td>
         <% end %>
       </tr>
     <% end %>

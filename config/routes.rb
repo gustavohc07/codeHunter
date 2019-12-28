@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   resources 'proposals', only: [:index] do
     get 'accept', to: 'proposals#new_accept'
     post 'accept', to: 'proposals#accept'
+    get 'decline', to: 'proposals#new_decline'
+    post 'decline', to: 'proposals#decline'
   end
   resources 'profiles', only: [:new, :create, :show, :edit, :update]
 end

@@ -1,8 +1,14 @@
 <h1>Proposta para <%= @proposal.application.candidate.profile.full_name %></h1>
 
+<h2><%= @proposal.application.job.title %></h2>
+
 <div>
   <% if @proposal.acceptance_message %>
-
+    <h2>Mensagem ao CodeHunter:</h2>
+     <p><%= @proposal.acceptance_message %></p>
+  <% elsif  @proposal.reject_message %>
+    <h2>Mensagem ao CodeHunter:</h2>
+    <p><%= @proposal.reject_message %></p>
   <% end %>
 </div>
 
@@ -36,7 +42,7 @@
 <% elsif candidate_signed_in? %>
   <% if @proposal.status == 'pending' %>
     <%= link_to 'Aceitar', proposal_accept_path(@proposal) %>
-    <%= link_to 'Recusar' %>
+    <%= link_to 'Recusar', proposal_decline_path(@proposal) %>
   <% end %>
   <%= link_to 'Voltar', proposals_path %>
 <% end %>
