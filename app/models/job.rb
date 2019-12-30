@@ -7,4 +7,6 @@ class Job < ApplicationRecord
   belongs_to :headhunter
   has_many :applications
   has_many :candidates, through: :applications
+
+  enum status: {open: 0, close: 1, not_public: 5}
 end

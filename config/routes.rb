@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources 'applications', only: [:new, :create]
     get 'myjobs', to: 'jobs#view_headhunter_jobs'
     get 'candidatelist', to: 'jobs#candidate_list'
+    post 'close_application', to: 'jobs#close_application'
   end
   resources 'applications', only: [:index, :show, :destroy] do
     resources 'proposals', only: [:show, :new, :create]

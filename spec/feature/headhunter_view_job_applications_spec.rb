@@ -46,8 +46,8 @@ feature "Headhunter/Codehunter view job applications" do
 
     expect(page).to have_content('Meus Processos Seletivos')
     expect(page).to have_content('Processos em andamento')
-    expect(page).to have_content('Processos concluidos')
-    expect(page).to have_content('Processos cancelados')
+    expect(page).not_to have_content('Processos encerrados')
+    expect(page).not_to have_content('Processos cancelados')
     expect(page).to have_link(job.title)
     expect(page).to have_content('Numero de inscritos')
     expect(page).to have_content('2 inscrito')
