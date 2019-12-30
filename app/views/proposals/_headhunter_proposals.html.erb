@@ -1,0 +1,24 @@
+<h1>Propostas Enviadas</h1>
+<% if proposals.any? %>
+  <table>
+    <tr>
+      <th>Vaga</th>
+      <th>Candidato(a)</th>
+      <th>Status</th>
+    </tr>
+    <% proposals.each do |proposal| %>
+      <tr>
+        <td><%= link_to proposal.application.job.title, application_proposal_path(proposal.application_id, proposal.id) %></td>
+        <td><%= proposal.candidate.profile.full_name %></td>
+        <td><%= t(proposal.status) %></td>
+        <td>
+          <% if proposal.acceptance_message || proposal.reject_message %>
+              <%= link_to 'Ver mensagem do candidato', application_proposal_path(proposal.application_id, proposal) %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <h2>Você não enviou nenhuma proposta.</h2>
+<% end %>

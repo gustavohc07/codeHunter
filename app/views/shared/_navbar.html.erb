@@ -4,6 +4,7 @@
     <%= link_to t('.about_us') %>
     <%= link_to t('.listed_jobs'), jobs_path %>
     <%= link_to t('.my_listed_jobs'), job_myjobs_path(current_headhunter) %>
+    <%= link_to t('.my_proposals'), proposals_path %>
     <%= link_to t('.new_job'), new_job_path %>
     <%= link_to t('.sign_out'), destroy_headhunter_session_path, method: :delete %>
   </nav>
@@ -13,6 +14,7 @@
   <%= link_to t('.about_us') %>
   <%= link_to t('.jobs'), jobs_path %>
   <%= link_to t('.my_applications'), applications_path %>
+  <%= link_to t('.my_proposals'), proposals_path %>
   <% if current_candidate.profile != nil %>
     <%= link_to t('.profile'), profile_path(current_candidate.profile) %>
     <% else %>
