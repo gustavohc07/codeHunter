@@ -1,0 +1,5 @@
+<h1> Proposta para <%= @application.candidate.profile.full_name %></h1>
+
+<%= render partial: 'form', locals: {proposal: @proposal, application: @application}%>
+
+<%= link_to 'Voltar', application_path(@application) %>

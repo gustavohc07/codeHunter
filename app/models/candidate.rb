@@ -7,4 +7,5 @@ class Candidate < ApplicationRecord
   has_one :profile
   has_many :applications
   has_many :jobs, through: :applications
+  has_many :proposals, through: :applications
 end

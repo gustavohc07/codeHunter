@@ -1,0 +1,5 @@
+<% if candidate_signed_in? %>
+  <%= render partial: 'candidate_proposals', locals: {proposals: @proposals} %>
+<% else %>
+  <%= render partial: 'headhunter_proposals', locals: {proposals: @proposals} %>
+<% end %>

@@ -1,0 +1,7 @@
+<h1>Parabéns por essa conquista!</h1>
+
+<%= form_with model: [@application, @proposal], url: proposal_accept_path, method: :post, local: true do |f| %>
+  <%= f.label :acceptance_message %>
+  <%= f.text_area :acceptance_message %>
+  <%= f.submit 'Enviar', data: {confirm: 'Ao aceitar a proposta, todas as outras serão recusadas. Tem certeza?'} %>
+<% end %>

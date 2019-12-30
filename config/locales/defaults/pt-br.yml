@@ -1,4 +1,7 @@
 pt-BR:
+  accept: Aceito
+  pending: Pendente
+  decline: Recusado
   activerecord:
     errors:
       messages:

@@ -1,0 +1,7 @@
+<h1>Que pena! Diga ao recrutador o por quê não poderá participar dessa vaga</h1>
+
+<%= form_with model: [@application, @proposal], url: proposal_decline_path, method: :post, local: true do |f| %>
+  <%= f.label :reject_message %>
+  <%= f.text_area :reject_message %>
+  <%= f.submit 'Enviar', data: {confirm: 'Ao aceitar a proposta, todas as outras serão recusadas. Tem certeza?'} %>
+<% end %>

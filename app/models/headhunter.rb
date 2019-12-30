@@ -7,4 +7,5 @@ class Headhunter < ApplicationRecord
   has_many :jobs
   has_many :applications, through: :jobs
   has_many :candidates, through: :applications
+  has_many :proposals
 end
