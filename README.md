@@ -1,5 +1,7 @@
 # CodeHunter Project
 
+Tempo para completar funcionalidades básicas: ~60 horas (medido com o wakatime)
+
 ##### Projeto realizado individualmente como etapa do treinamento da [CampusCode](www.campuscode.com.br).
 
 ### Gems e versões utilizadas
