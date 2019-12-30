@@ -1,17 +1,40 @@
 <h1><%= t('.welcome_to_my_jobs') %></h1>
-
-<h2><%=t('.on_going_applications') %></h2>
-
+<br>
 <% @jobs.each do |job| %>
-  <div>
-    <h3>
-      <%= link_to job.title, job_candidatelist_path(job) %>
-    </h3>
-    <h4><%= t('.number_of_applications') %></h4>
-    <%= pluralize(job.applications.count, 'inscrito', 'inscritos') %>
-  </div>
+    <h2><%=t('.on_going_applications') if job.status == 'open' %></h2>
+  <br>
+  <% if job.status == 'open' %>
+    <div>
+      <h3><%= link_to job.title, job_candidatelist_path(job) %></h3>
+      <h4><%= t('.number_of_applications') %></h4>
+      <%= pluralize(job.applications.count, 'inscrito', 'inscritos') %>
+      <%= link_to 'Encerrar inscrição', job_close_application_path(job), method: :post %>
+    </div>
 <% end %>
+  <br>
 
-<h2><%=t('.finished_applications') %></h2>
+    <h2><%=t('.finished_applications') if job.status == 'close' %></h2>
+  <br>
+  <% if job.status == 'close' %>
+    <div>
+      <h3>
+        <%= link_to job.title, job_candidatelist_path(job) %>
+      </h3>
+      <h4><%= t('.number_of_applications') %></h4>
+      <%= pluralize(job.applications.count, 'inscrito', 'inscritos') %>
+    </div>
+  <% end %>
+  <br>
 
-<h2><%=t('.canceled_applications') %></h2>
+    <h2><%=t('.canceled_applications') if job.status == 'canceled' %></h2>
+  <br>
+  <% if job.status == 'canceled' %>
+    <div>
+        <h3>
+          <%= link_to job.title, job_candidatelist_path(job) %>
+        </h3>
+        <h4><%= t('.number_of_applications') %></h4>
+        <%= pluralize(job.applications.count, 'inscrito', 'inscritos') %>
+      </div>
+  <% end %>
+<% end %>

@@ -16,6 +16,9 @@
               <%= link_to 'Ver mensagem do candidato', application_proposal_path(proposal.application_id, proposal) %>
           <% end %>
         </td>
+          <% if proposal.status == 'accept' %>
+            <%= link_to 'Encerrar inscrições', job_close_application_path(proposal.application.job), method: :post %>
+          <% end %>
       </tr>
     <% end %>
   </table>

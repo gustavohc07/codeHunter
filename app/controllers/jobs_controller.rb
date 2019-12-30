@@ -1,6 +1,7 @@
 class JobsController < ApplicationController
   before_action :authorize_both!, only: [:show]
-  before_action :authorize_headhunter!, only: [:new, :create, :edit, :update, :destroy, :view_headhunter_jobs, :candidate_list]
+  before_action :authorize_headhunter!, only: [:new, :create, :edit, :update, :destroy, :view_headhunter_jobs, :candidate_list,
+                                               :close_applications,]
 
   def index
     @jobs = Job.all
@@ -31,6 +32,13 @@ class JobsController < ApplicationController
   def candidate_list
     @job = Job.find(params[:job_id])
     @applications = Application.where(job_id: @job)
+  end
+
+  def close_application
+    @job = Job.find(params[:job_id])
+    @job.close!
+    flash[:notice] = 'Inscrições para essa vaga foram encerradas'
+    redirect_back(fallback_location: root_path)
   end
 
   private
