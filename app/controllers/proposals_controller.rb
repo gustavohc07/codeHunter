@@ -3,8 +3,11 @@ class ProposalsController < ApplicationController
   before_action :authenticate_candidate!, only: [:new_accept, :accept]
 
   def index
-    @applications = Application.where(candidate_id: current_candidate)
-    @proposals = Proposal.where(application_id: @applications)
+    if candidate_signed_in?
+      @proposals = Proposal.where(candidate_id:  current_candidate)
+    elsif headhunter_signed_in?
+      @proposals = Proposal.where(headhunter_id: current_headhunter)
+    end
   end
 
   def show
@@ -21,7 +24,9 @@ class ProposalsController < ApplicationController
     @proposal = Proposal.new(proposal_params)
     @application = Application.find(params[:application_id])
     @proposal.application = @application
-    if @proposal.save
+    @proposal.candidate = @application.candidate
+    @proposal.headhunter = current_headhunter
+    if @proposal.save!
       @application.proposal_sent!
       redirect_to [@application, @proposal]
     else
@@ -63,7 +68,7 @@ class ProposalsController < ApplicationController
   def proposal_params
     params.require(:proposal).permit(:start_date, :salary, :benefits, :bonus,
                                      :additional_info, :application_id, :acceptance_message,
-                                     :reject_message)
+                                     :reject_message, :headhunter_id, :candidate_id)
   end
 
   def block_forbidden_access

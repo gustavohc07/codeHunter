@@ -25,7 +25,7 @@ feature "Candidate receive job application proposal" do
 
     application = Application.create!(job: job, candidate: candidate, message: "Ja me candidatei")
     Proposal.create!(start_date: "20/01/2020", salary: "3500", benefits: "Varios", bonus: "Varios",
-                     additional_info: "Varios", application: application)
+                     additional_info: "Varios", application: application, candidate: candidate, headhunter: headhunter)
 
     login_as candidate, scope: :candidate
     visit root_path
@@ -64,7 +64,7 @@ feature "Candidate receive job application proposal" do
     Proposal.create!(start_date: "20/01/2020", salary: "3500", benefits: "VR, VA, Saúde",
                      bonus: "PLR e bônus de desempenho",
                      additional_info: "Expediente mais curto toda sexta feira",
-                     application: application)
+                     application: application, candidate: candidate, headhunter: headhunter)
 
     login_as candidate, scope: :candidate
     visit root_path
@@ -125,11 +125,11 @@ feature "Candidate receive job application proposal" do
     Proposal.create!(start_date: "20/01/2020", salary: "3500", benefits: "VR, VA, Saúde",
                      bonus: "PLR e bônus de desempenho",
                      additional_info: "Expediente mais curto toda sexta feira",
-                     application: application)
+                     application: application, candidate: candidate, headhunter: headhunter)
     Proposal.create!(start_date: "25/03/2020", salary: "4500", benefits: "VR, VA, Saúde",
                      bonus: "PLR e bônus de desempenho",
                      additional_info: "Expediente mais curto toda sexta feira",
-                     application: another_application)
+                     application: another_application, candidate: candidate, headhunter: headhunter)
 
     login_as candidate, scope: :candidate
     visit root_path
@@ -141,17 +141,17 @@ feature "Candidate receive job application proposal" do
 
   scenario "and there are no proposals" do
     headhunter = Headhunter.create!(email: "test@test.com", password: "123456")
-    job = Job.create!(title: "Programador RoR",
-                      level: "Júnior",
-                      number_of_vacancies: 4,
-                      salary: 3500,
-                      description: "Programador Ruby on Rails para atuar em startup",
-                      abilities: "CRUD, Git, Ruby, Ruby on Rails, Boa comunicação",
-                      deadline: "20/01/2020",
-                      start_date: "02/01/2020",
-                      location: "Remoto",
-                      contract_type: "CLT",
-                      headhunter: headhunter)
+    Job.create!(title: "Programador RoR",
+                level: "Júnior",
+                number_of_vacancies: 4,
+                salary: 3500,
+                description: "Programador Ruby on Rails para atuar em startup",
+                abilities: "CRUD, Git, Ruby, Ruby on Rails, Boa comunicação",
+                deadline: "20/01/2020",
+                start_date: "02/01/2020",
+                location: "Remoto",
+                contract_type: "CLT",
+                headhunter: headhunter)
 
     candidate = Candidate.create!(email: "candidate@test.com", password: "123456")
 
@@ -207,11 +207,11 @@ feature "Candidate receive job application proposal" do
     Proposal.create!(start_date: "20/01/2020", salary: "3500", benefits: "VR, VA, Saúde",
                      bonus: "PLR e bônus de desempenho",
                      additional_info: "Expediente mais curto toda sexta feira",
-                     application: application)
+                     application: application, candidate: candidate, headhunter: headhunter)
     Proposal.create!(start_date: "25/03/2020", salary: "4500", benefits: "VR, VA, Saúde",
                      bonus: "PLR e bônus de desempenho",
                      additional_info: "Expediente mais curto toda sexta feira",
-                     application: another_application)
+                     application: another_application, candidate: candidate, headhunter: headhunter)
 
     login_as other_candidate, scope: :candidate
     visit root_path
@@ -246,7 +246,7 @@ feature "Candidate receive job application proposal" do
 
     application = Application.create!(job: job, candidate: candidate, message: "Ja me candidatei")
     Proposal.create!(start_date: "20/01/2020", salary: "3500", benefits: "Varios", bonus: "Varios",
-                     additional_info: "Varios", application: application)
+                     additional_info: "Varios", application: application, candidate: candidate, headhunter: headhunter)
 
     login_as candidate, scope: :candidate
     visit root_path
@@ -315,7 +315,7 @@ feature "Candidate receive job application proposal" do
     Proposal.create!(start_date: "20/01/2020", salary: "3500", benefits: "VR, VA, Saúde",
                      bonus: "PLR e bônus de desempenho",
                      additional_info: "Expediente mais curto toda sexta feira",
-                     application: application)
+                     application: application, candidate: candidate, headhunter: headhunter)
 
     login_as candidate, scope: :candidate
     visit root_path
@@ -364,7 +364,7 @@ feature "Candidate receive job application proposal" do
     Proposal.create!(start_date: "20/01/2020", salary: "3500", benefits: "VR, VA, Saúde",
                      bonus: "PLR e bônus de desempenho",
                      additional_info: "Expediente mais curto toda sexta feira",
-                     application: application)
+                     application: application, candidate: candidate, headhunter: headhunter)
 
     login_as candidate, scope: :candidate
     visit root_path
@@ -432,7 +432,7 @@ feature "Candidate receive job application proposal" do
 
       application = Application.create!(job: job, candidate: candidate, message: "Ja me candidatei")
       Proposal.create!(start_date: "20/01/2020", salary: "3500", benefits: "Varios", bonus: "Varios",
-                       additional_info: "Varios", application: application)
+                       additional_info: "Varios", application: application, candidate: candidate, headhunter: headhunter)
 
       login_as candidate, scope: :candidate
       visit root_path
@@ -500,15 +500,15 @@ feature "Candidate receive job application proposal" do
       Proposal.create!(start_date: "20/01/2020", salary: "3500", benefits: "VR, VA, Saúde",
                        bonus: "PLR e bônus de desempenho",
                        additional_info: "Expediente mais curto toda sexta feira",
-                       application: application)
+                       application: application, candidate: candidate, headhunter: headhunter)
       Proposal.create!(start_date: "25/03/2020", salary: "4500", benefits: "VR, VA, Saúde",
                        bonus: "PLR e bônus de desempenho",
                        additional_info: "Expediente mais curto toda sexta feira",
-                       application: another_application)
+                       application: another_application, candidate: candidate, headhunter: headhunter)
       Proposal.create!(start_date: "25/03/2020", salary: "4500", benefits: "VR, VA, Saúde",
                        bonus: "PLR e bônus de desempenho",
                        additional_info: "Expediente mais curto toda sexta feira",
-                       application: yet_another_application)
+                       application: yet_another_application, candidate: candidate, headhunter: headhunter)
 
       login_as candidate, scope: :candidate
       visit root_path
@@ -565,9 +565,9 @@ feature "Candidate receive job application proposal" do
       Proposal.create!(start_date: "25/03/2020", salary: "4500", benefits: "VR, VA, Saúde",
                        bonus: "PLR e bônus de desempenho",
                        additional_info: "Expediente mais curto toda sexta feira",
-                       application: another_application)
+                       application: another_application, candidate: other_candidate, headhunter: headhunter)
       Proposal.create!(start_date: "20/01/2020", salary: "3500", benefits: "Varios", bonus: "Varios",
-                       additional_info: "Varios", application: application)
+                       additional_info: "Varios", application: application, candidate: candidate, headhunter: headhunter)
 
       login_as candidate, scope: :candidate
       visit root_path
@@ -627,9 +627,9 @@ feature "Candidate receive job application proposal" do
       Proposal.create!(start_date: "25/03/2020", salary: "4500", benefits: "VR, VA, Saúde",
                        bonus: "PLR e bônus de desempenho",
                        additional_info: "Expediente mais curto toda sexta feira",
-                       application: another_application)
+                       application: another_application, candidate: other_candidate, headhunter: headhunter)
       Proposal.create!(start_date: "20/01/2020", salary: "3500", benefits: "Varios", bonus: "Varios",
-                       additional_info: "Varios", application: application)
+                       additional_info: "Varios", application: application, candidate: candidate, headhunter: headhunter)
 
       login_as candidate, scope: :candidate
       visit root_path
@@ -669,7 +669,7 @@ feature "Candidate receive job application proposal" do
 
       application = Application.create!(job: job, candidate: candidate, message: "Ja me candidatei")
       Proposal.create!(start_date: "20/01/2020", salary: "3500", benefits: "Varios", bonus: "Varios",
-                       additional_info: "Varios", application: application)
+                       additional_info: "Varios", application: application, candidate: candidate, headhunter: headhunter)
 
       login_as candidate, scope: :candidate
       visit root_path
@@ -709,7 +709,7 @@ feature "Candidate receive job application proposal" do
 
       application = Application.create!(job: job, candidate: candidate, message: "Ja me candidatei")
       Proposal.create!(start_date: "20/01/2020", salary: "3500", benefits: "Varios", bonus: "Varios",
-                       additional_info: "Varios", application: application)
+                       additional_info: "Varios", application: application, candidate: candidate, headhunter: headhunter)
 
       login_as candidate, scope: :candidate
       visit root_path
@@ -749,7 +749,7 @@ feature "Candidate receive job application proposal" do
 
       application = Application.create!(job: job, candidate: candidate, message: "Ja me candidatei")
       Proposal.create!(start_date: "20/01/2020", salary: "3500", benefits: "Varios", bonus: "Varios",
-                       additional_info: "Varios", application: application)
+                       additional_info: "Varios", application: application, candidate: candidate, headhunter: headhunter)
 
       login_as candidate, scope: :candidate
       visit root_path
@@ -788,7 +788,7 @@ feature "Candidate receive job application proposal" do
 
       application = Application.create!(job: job, candidate: candidate, message: "Ja me candidatei")
       Proposal.create!(start_date: "20/01/2020", salary: "3500", benefits: "Varios", bonus: "Varios",
-                       additional_info: "Varios", application: application)
+                       additional_info: "Varios", application: application, candidate: candidate, headhunter: headhunter)
 
       login_as candidate, scope: :candidate
       visit root_path
