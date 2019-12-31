@@ -17,10 +17,9 @@ class ApplicationController < ActionController::Base
       resource.profile.attributes.each do |elem|
         if elem[1].blank?
           return edit_profile_path(resource.profile)
-        else
-          return root_path
         end
       end
+      return root_path
     else
       root_path
     end
