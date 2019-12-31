@@ -10,7 +10,6 @@ feature 'User uses navbar' do
       expect(page).to have_link('Vagas')
       expect(page).to have_link('Sou um coder!')
       expect(page).to have_link('Sou um CodeHunter!')
-      expect(page).to have_link('Login')
     end
 
     scenario 'and can go to jobs page' do
@@ -27,18 +26,19 @@ feature 'User uses navbar' do
       expect(current_path).to eq jobs_path
     end
 
-    scenario 'and can go to coder registration page' do
+    scenario 'and can go to coder login page' do
       visit root_path
 
       click_on 'Sou um coder!'
-      expect(current_path).to eq new_candidate_registration_path
+      expect(current_path).to eq new_candidate_session_path
+      expect(page).to have_content 'Sign up'
     end
     scenario 'and can go to CodeHunter/Headhunter page' do
       visit root_path
 
       click_on 'Sou um CodeHunter!'
 
-      expect(current_path).to eq new_headhunter_registration_path
+      expect(current_path).to eq new_headhunter_session_path
     end
 
     xscenario 'and can go to login page regardless of being candidate or headhunter' do

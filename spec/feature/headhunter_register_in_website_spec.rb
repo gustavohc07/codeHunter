@@ -4,6 +4,7 @@ feature 'Headhunter register' do
   scenario 'sucessfully' do
     visit root_path
     click_on 'Sou um CodeHunter!'
+    click_on 'Sign up'
 
     fill_in 'E-mail', with: 'test@test.com'
     fill_in 'Senha', with: '123456'
@@ -18,6 +19,7 @@ feature 'Headhunter register' do
 
     visit root_path
     click_on 'Sou um CodeHunter!'
+    click_on 'Sign up'
 
     fill_in 'E-mail', with: 'test@test.com'
     fill_in 'Senha', with: '123456'
