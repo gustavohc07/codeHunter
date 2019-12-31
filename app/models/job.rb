@@ -9,4 +9,6 @@ class Job < ApplicationRecord
   has_many :candidates, through: :applications
 
   enum status: {open: 0, close: 1, not_public: 5}
+
+
 end

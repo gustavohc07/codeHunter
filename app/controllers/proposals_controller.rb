@@ -26,7 +26,7 @@ class ProposalsController < ApplicationController
     @proposal.application = @application
     @proposal.candidate = @application.candidate
     @proposal.headhunter = current_headhunter
-    if @proposal.save!
+    if @proposal.save
       @application.proposal_sent!
       redirect_to [@application, @proposal]
     else
