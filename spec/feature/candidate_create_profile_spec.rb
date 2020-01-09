@@ -8,26 +8,30 @@ feature "User as candidate can register his/her profile" do
     visit root_path
     click_on "Criar Perfil"
 
-    expect(page).to have_css("h2", text: "Informações Pessoais")
-    attach_file "Imagem", Rails.root.join("spec", "support", "image.png")
-    fill_in "Nome", with: "Gustavo"
-    fill_in "Sobrenome", with: "Carvalho"
-    fill_in "Nome Social", with: "Gustavo"
-    fill_in "Data de Nascimento", with: "20/01/1994"
-    fill_in "Nos conte mais sobre você!", with: "25 anos, engenheiro civil migrando para programação."
+    within "div#personal_information", text: "Informações Pessoais" do
+      attach_file "Imagem", Rails.root.join("spec", "support", "image.png")
+      fill_in "Nome", with: "Gustavo"
+      fill_in "Sobrenome", with: "Carvalho"
+      fill_in "Nome Social", with: "Gustavo"
+      fill_in "Data de Nascimento", with: "20/01/1994"
+      fill_in "Nos conte mais sobre você!", with: "25 anos, engenheiro civil migrando para programação."
+    end
 
-    expect(page).to have_css("h2", text: "Formação")
-    fill_in "Universidade", with: "Universidade Federal de Uberlândia"
-    fill_in "Curso", with: "Engenharia Civil"
-    fill_in "Ano de Graduação", with: "20/08/2017"
+    within "div#formation", text: "Formação" do
+      fill_in "Universidade", with: "Universidade Federal de Uberlândia"
+      fill_in "Curso", with: "Engenharia Civil"
+      fill_in "Ano de Graduação", with: "20/08/2017"
+    end
 
-    expect(page).to have_css("h2", text: "Experiência Profissional")
-    fill_in "Empresa", with: "Geometa"
-    fill_in "Cargo", with: "Estagiário"
-    fill_in "Data de Início", with: "01/01/2015"
-    fill_in "Data de Saída", with: "01/12/2015"
-    fill_in "Nos conte mais sobre essa experiência", with: "Auxiliou em obras."
+    within "div#professional_experience", text: "Experiência Profissional" do
+      fill_in "Empresa", with: "Geometa"
+      fill_in "Cargo", with: "Estagiário"
+      fill_in "Data de Início", with: "01/01/2015"
+      fill_in "Data de Saída", with: "01/12/2015"
+      fill_in "Nos conte mais sobre essa experiência", with: "Auxiliou em obras."
+    end
     click_on "Enviar"
+
 
     expect(page).to have_content("Bem vindo ao seu perfil!")
     expect(page).to have_xpath("//img")
@@ -74,23 +78,26 @@ feature "User as candidate can register his/her profile" do
     visit root_path
     click_on "Criar Perfil"
 
-    expect(page).to have_css("h2", text: "Informações Pessoais")
-    attach_file "Imagem", Rails.root.join("spec", "support", "image.png")
-    fill_in "Nome Social", with: "Teste"
-    fill_in "Data de Nascimento", with: "20/01/1994"
-    fill_in "Nos conte mais sobre você!", with: "25 anos, engenheiro civil migrando para programação."
+    within "div#personal_information", text: "Informações Pessoais" do
+      attach_file "Imagem", Rails.root.join("spec", "support", "image.png")
+      fill_in "Nome Social", with: "Teste"
+      fill_in "Data de Nascimento", with: "20/01/1994"
+      fill_in "Nos conte mais sobre você!", with: "25 anos, engenheiro civil migrando para programação."
+    end
 
-    expect(page).to have_css("h2", text: "Formação")
-    fill_in "Universidade", with: "Universidade Federal de Uberlândia"
-    fill_in "Curso", with: "Engenharia Civil"
-    fill_in "Ano de Graduação", with: "20/08/2017"
+    within "div#formation", text: "Formação" do
+      fill_in "Universidade", with: "Universidade Federal de Uberlândia"
+      fill_in "Curso", with: "Engenharia Civil"
+      fill_in "Ano de Graduação", with: "20/08/2017"
+    end
 
-    expect(page).to have_css("h2", text: "Experiência Profissional")
-    fill_in "Empresa", with: "Geometa"
-    fill_in "Cargo", with: "Estagiário"
-    fill_in "Data de Início", with: "01/01/2015"
-    fill_in "Data de Saída", with: "01/12/2015"
-    fill_in "Nos conte mais sobre essa experiência", with: "Auxiliou em obras."
+    within "div#professional_experience", text: "Experiência Profissional" do
+      fill_in "Empresa", with: "Geometa"
+      fill_in "Cargo", with: "Estagiário"
+      fill_in "Data de Início", with: "01/01/2015"
+      fill_in "Data de Saída", with: "01/12/2015"
+      fill_in "Nos conte mais sobre essa experiência", with: "Auxiliou em obras."
+    end
     click_on "Enviar"
 
 
