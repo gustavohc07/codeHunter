@@ -1,6 +1,6 @@
 <%= form_with model: profile, local: true do |f| %>
   <div>
-    <div>
+    <div id="personal_information">
       <h2><%= t('.personal_information') %></h2>
       <div class="field">
         <%= f.label :image%> <br>
@@ -28,7 +28,7 @@
       </div>
     </div>
 
-    <div>
+    <div id="formation">
       <h2><%= t('.formation') %></h2>
       <div class="field">
         <%= f.label :university %> <br>
@@ -44,8 +44,8 @@
       </div>
     </div>
 
-    <div>
-      <h2><%= t('.profissional_experience') %></h2>
+    <div id="professional_experience">
+      <h2><%= t('.professional_experience') %></h2>
       <div class="field">
         <%= f.label :company  %> <br>
         <%= f.text_field :company %>
