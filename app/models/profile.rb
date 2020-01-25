@@ -3,6 +3,6 @@ class Profile < ApplicationRecord
   has_one_attached :image
 
   def full_name
-    name + ' '+ last_name
+    "#{name} #{last_name}"
   end
 end
