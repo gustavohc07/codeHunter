@@ -102,18 +102,17 @@ describe 'Job management' do
 
       headhunter = create(:headhunter)
 
-      post api_v1_jobs_path, params: {
-          title: 'Programador NodeJS',
-          level: 'Junior',
-          number_of_vacancies: 4,
-          salary: 3000,
-          description: 'Saber fazer testes em NodeJS',
-          abilities: 'Git, Git flow, NodeJS, Tester',
-          deadline: '20/03/2020',
-          start_date: '20/01/2020',
-          location: 'Remoto',
-          contract_type: 'CLT',
-          headhunter_id: headhunter.id,
+      post api_v1_jobs_path, params: { title: 'Programador NodeJS',
+                                       level: 'Junior',
+                                       number_of_vacancies: 4,
+                                       salary: 3000,
+                                       description: 'Saber fazer testes em NodeJS',
+                                       abilities: 'Git, Git flow, NodeJS, Tester',
+                                       deadline: '20/03/2020',
+                                       start_date: '20/01/2020',
+                                       location: 'Remoto',
+                                       contract_type: 'CLT',
+                                       headhunter_id: headhunter.id
       }
 
       expect(response).to have_http_status(500)
@@ -126,10 +125,8 @@ describe 'Job management' do
       headhunter = create(:headhunter)
       job = create(:job, headhunter: headhunter)
 
-      patch api_v1_job_path(job), params: {
-          number_of_vacancies: 2,
-          location: 'Sao Paulo',
-      }
+      patch api_v1_job_path(job), params: { number_of_vacancies: 2,
+                                            location: 'Sao Paulo' }
 
       job.reload
       expect(response).to have_http_status(:ok)
@@ -141,10 +138,8 @@ describe 'Job management' do
       headhunter = create(:headhunter)
       job = create(:job, headhunter: headhunter)
 
-      patch api_v1_job_path(job), params: {
-          number_of_vacancies: nil,
-          location: nil,
-      }
+      patch api_v1_job_path(job), params: { number_of_vacancies: nil,
+                                            location: nil }
 
       expect(response).to have_http_status(412)
       expect(response.body).to include('Vaga nao pode ser atualizada')
@@ -156,10 +151,8 @@ describe 'Job management' do
       headhunter = create(:headhunter)
       job = create(:job, headhunter: headhunter)
 
-      patch api_v1_job_path(job), params: {
-          number_of_vacancies: 2,
-          location: 'Sao Paulo',
-      }
+      patch api_v1_job_path(job), params: { number_of_vacancies: 2,
+                                            location: 'Sao Paulo' }
 
       expect(response).to have_http_status(500)
     end
@@ -172,7 +165,6 @@ describe 'Job management' do
       job = create(:job, headhunter: headhunter)
 
       login_as headhunter, scope: :headhunter
-
       delete api_v1_job_path(job)
 
       expect(response).to have_http_status(:ok)
@@ -186,7 +178,6 @@ describe 'Job management' do
       job = create(:job, headhunter: headhunter)
 
       login_as headhunter2, scope: :headhunter
-
       delete api_v1_job_path(job)
 
       expect(response).to have_http_status(:forbidden)
@@ -201,8 +192,7 @@ describe 'Job management' do
       login_as headhunter, scope: :headhunter
 
       delete api_v1_job_path(job)
-
       expect(response).to have_http_status(500)
     end
-   end
+  end
 end

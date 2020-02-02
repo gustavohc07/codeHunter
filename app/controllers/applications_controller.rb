@@ -28,6 +28,7 @@ class ApplicationsController < ApplicationController
     @application.job = Job.find(params[:job_id])
     @application.candidate = current_candidate
     if @application.save
+      JobApplicationMailer.application_email(@application.id)
       flash[:notice] = 'Inscrição realizada com sucesso!'
       redirect_to application_path(@application)
     end

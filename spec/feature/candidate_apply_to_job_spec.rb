@@ -184,8 +184,8 @@ feature 'Candidate apply to a listed job' do
     end
 
     scenario 'and receive email for job application' do
-      mailer_spy = class_spy(ApplicationMailer)
-      stub_const('ApplicationMailer', mailer_spy)
+      mailer_spy = class_spy(JobApplicationMailer)
+      stub_const('JobApplicationMailer', mailer_spy)
       headhunter = Headhunter.create!(email: 'test@test.com', password: '123456')
       job = Job.create!(title: 'Programador RoR',
                         level: 'Júnior',
@@ -214,7 +214,8 @@ feature 'Candidate apply to a listed job' do
       fill_in 'Diga ao CodeHunter o por que voce e ideal para a vaga! :)', with: 'Pq eu sou um teste.'
       click_on 'Candidatar!'
 
-      expect(ApplicationMailer).to have_received(:application_email).with(application.id)
+      application = Application.last
+      expect(JobApplicationMailer).to have_received(:application_email).with(application.id)
     end
   end
 end
