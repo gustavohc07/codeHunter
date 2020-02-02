@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class ApplicationsController < ApplicationController
-  before_action :authenticate_candidate!, only: [:index, :new, :create, :destroy]
-  before_action :authenticate_headhunter!, only: [:highlight, :cancel_highlight]
+  before_action :authenticate_candidate!, only: %i[index new create destroy]
+  before_action :authenticate_headhunter!, only: %i[highlight cancel_highlight]
   before_action :authorize_both!, only: [:show]
-  before_action :check_profile, only: [:show, :new, :create, :edit, :update]
-  before_action :has_applied?, only: [:new, :create]
-  before_action :check_for_closed_jobs, only: [:new, :create]
+  before_action :check_profile, only: %i[show new create edit update]
+  before_action :has_applied?, only: %i[new create]
+  before_action :check_for_closed_jobs, only: %i[new create]
 
   def index
     @application = Application.where(candidate_id: current_candidate)
@@ -77,12 +79,14 @@ class ApplicationsController < ApplicationController
 
   def has_applied?
     if Application.where(candidate_id: current_candidate.id, job_id: params[:job_id]).exists?
-      redirect_to applications_path, alert: "Voce já está inscrito nessa vaga"
+      redirect_to applications_path, alert: 'Voce já está inscrito nessa vaga'
     end
   end
 
   def authorize_both!
-    redirect_to root_path, alert: 'Você deve estar logado para acessar essa área!' unless current_headhunter || current_candidate
+    unless current_headhunter || current_candidate
+      redirect_to root_path, alert: 'Você deve estar logado para acessar essa área!'
+    end
   end
 
   def check_for_closed_jobs

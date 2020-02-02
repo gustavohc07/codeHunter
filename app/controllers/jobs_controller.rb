@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class JobsController < ApplicationController
   before_action :authorize_both!, only: [:show]
-  before_action :authorize_headhunter!, only: [:new, :create, :edit, :update, :destroy, :view_headhunter_jobs, :candidate_list,
-                                               :close_applications,]
+  before_action :authorize_headhunter!, only: %i[new create edit update destroy view_headhunter_jobs candidate_list
+                                                 close_applications]
 
   def index
     @jobs = Job.all
@@ -48,14 +50,18 @@ class JobsController < ApplicationController
                                 :salary, :description, :abilities,
                                 :deadline, :start_date, :location,
                                 :contract_type)
-      .merge(headhunter: current_headhunter)
+          .merge(headhunter: current_headhunter)
   end
 
   def authorize_headhunter!
-    redirect_to root_path, alert: 'Você deve ser um CodeHunter para acessar essa área!' unless current_headhunter
+    unless current_headhunter
+      redirect_to root_path, alert: 'Você deve ser um CodeHunter para acessar essa área!'
+    end
   end
 
   def authorize_both!
-    redirect_to root_path, alert: 'Você deve estar logado para acessar essa área!' unless current_headhunter || current_candidate
+    unless current_headhunter || current_candidate
+      redirect_to root_path, alert: 'Você deve estar logado para acessar essa área!'
+    end
   end
 end

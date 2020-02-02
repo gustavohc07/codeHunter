@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 feature 'Candidate apply to a listed job' do
@@ -68,10 +70,10 @@ feature 'Candidate apply to a listed job' do
                         headhunter: headhunter)
       candidate = Candidate.create!(email: 'candidate@test.com', password: '123456')
       Profile.create!(candidate: candidate, name: 'Gustavo', last_name: 'Carvalho',
-                  social_name: 'Gustavo', birthday: '20/01/1994', about_yourself: '25 anos, eng civil',
-                  university: 'UFU', graduation_course: 'Eng Civil', year_of_graduation: '20/08/2017',
-                  company: 'Geometa', role: 'Estagiario', start_date: '20/01/2016', end_date: '20/06/2016',
-                  experience_description: 'Auxiliou na obra')
+                      social_name: 'Gustavo', birthday: '20/01/1994', about_yourself: '25 anos, eng civil',
+                      university: 'UFU', graduation_course: 'Eng Civil', year_of_graduation: '20/08/2017',
+                      company: 'Geometa', role: 'Estagiario', start_date: '20/01/2016', end_date: '20/06/2016',
+                      experience_description: 'Auxiliou na obra')
 
       login_as candidate, scope: :candidate
       visit root_path

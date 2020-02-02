@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 feature 'User uses navbar' do
@@ -59,7 +61,7 @@ feature 'User uses navbar' do
 
   context 'as headhunter' do
     scenario 'and view all links from navbar' do
-      headhunter = Headhunter.create!(email:'test@test.com', password: '1123456')
+      headhunter = Headhunter.create!(email: 'test@test.com', password: '1123456')
 
       login_as headhunter, scope: :headhunter
       visit root_path
@@ -73,7 +75,7 @@ feature 'User uses navbar' do
     end
 
     scenario 'and can go to new job page' do
-      headhunter = Headhunter.create!(email:'test@test.com', password: '1123456')
+      headhunter = Headhunter.create!(email: 'test@test.com', password: '1123456')
 
       login_as headhunter, scope: :headhunter
       visit root_path
@@ -83,7 +85,7 @@ feature 'User uses navbar' do
     end
 
     scenario 'and can go to jobs page' do
-      headhunter = Headhunter.create!(email:'test@test.com', password: '1123456')
+      headhunter = Headhunter.create!(email: 'test@test.com', password: '1123456')
 
       login_as headhunter, scope: :headhunter
       visit root_path
@@ -93,7 +95,7 @@ feature 'User uses navbar' do
     end
 
     xscenario 'and can go to about us page' do
-      headhunter = Headhunter.create!(email:'test@test.com', password: '1123456')
+      headhunter = Headhunter.create!(email: 'test@test.com', password: '1123456')
 
       login_as headhunter, scope: :headhunter
       visit root_path
@@ -103,7 +105,7 @@ feature 'User uses navbar' do
     end
 
     scenario 'and can go to my listed jobs page' do
-      headhunter = Headhunter.create!(email:'test@test.com', password: '1123456')
+      headhunter = Headhunter.create!(email: 'test@test.com', password: '1123456')
 
       login_as headhunter, scope: :headhunter
       visit root_path
@@ -115,7 +117,7 @@ feature 'User uses navbar' do
 
   context 'as candidate' do
     scenario 'and view all links from navbar' do
-      candidate = Candidate.create!(name: 'Gustavo', last_name: 'Carvalho', email: 'test@test.com', password:'123456')
+      candidate = Candidate.create!(name: 'Gustavo', last_name: 'Carvalho', email: 'test@test.com', password: '123456')
 
       login_as candidate, scope: :candidate
       visit root_path
@@ -127,7 +129,7 @@ feature 'User uses navbar' do
       expect(page).to have_link('Sair')
     end
     xscenario 'and can go to about us page' do
-      candidate = Candidate.create!(name: 'Gustavo', last_name: 'Carvalho', email: 'test@test.com', password:'123456')
+      candidate = Candidate.create!(name: 'Gustavo', last_name: 'Carvalho', email: 'test@test.com', password: '123456')
 
       login_as candidate, scope: :candidate
       visit root_path
@@ -136,7 +138,7 @@ feature 'User uses navbar' do
       expect(current_path).to eq banana_path
     end
     scenario 'and can go to jobs page' do
-      candidate = Candidate.create!(name: 'Gustavo', last_name: 'Carvalho', email: 'test@test.com', password:'123456')
+      candidate = Candidate.create!(name: 'Gustavo', last_name: 'Carvalho', email: 'test@test.com', password: '123456')
 
       login_as candidate, scope: :candidate
       visit root_path
@@ -146,7 +148,7 @@ feature 'User uses navbar' do
     end
 
     scenario 'and can see their job applications' do
-      candidate = Candidate.create!(name: 'Gustavo', last_name: 'Carvalho', email: 'test@test.com', password:'123456')
+      candidate = Candidate.create!(name: 'Gustavo', last_name: 'Carvalho', email: 'test@test.com', password: '123456')
 
       login_as candidate, scope: :candidate
       visit root_path
@@ -156,7 +158,7 @@ feature 'User uses navbar' do
     end
 
     scenario 'and can see their profile' do
-      candidate = Candidate.create!(name: 'Gustavo', last_name: 'Carvalho', email: 'test@test.com', password:'123456')
+      candidate = Candidate.create!(name: 'Gustavo', last_name: 'Carvalho', email: 'test@test.com', password: '123456')
       Profile.create!(candidate: candidate)
 
       login_as candidate, scope: :candidate
@@ -167,7 +169,7 @@ feature 'User uses navbar' do
     end
 
     scenario 'and can go back to home page' do
-      candidate = Candidate.create!(name: 'Gustavo', last_name: 'Carvalho', email: 'test@test.com', password:'123456')
+      candidate = Candidate.create!(name: 'Gustavo', last_name: 'Carvalho', email: 'test@test.com', password: '123456')
 
       login_as candidate, scope: :candidate
       visit root_path

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Api::V1::JobsController < Api::V1::ApiController
   before_action :authenticate_headhunter!, only: [:delete]
 
@@ -5,7 +7,7 @@ class Api::V1::JobsController < Api::V1::ApiController
     @jobs = Job.all
     if @jobs.any?
       return render json: { message: 'Trabalhos renderizados com sucesso',
-                           data: @jobs },
+                            data: @jobs },
                     status: :ok
     end
     render json: { message: 'Nao encontramos registros' }, status: 404

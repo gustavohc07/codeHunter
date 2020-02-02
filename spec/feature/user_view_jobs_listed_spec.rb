@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 feature 'User view jobs listed' do
@@ -38,7 +40,6 @@ feature 'User view jobs listed' do
       expect(page).to have_content('4 vagas')
       expect(page).to have_content('CLT')
       expect(page).to have_link('Ver detalhes')
-
     end
 
     scenario 'and must be logged in to view job details' do
@@ -165,7 +166,6 @@ feature 'User view jobs listed' do
       expect(page).to have_content('Tipo de contrato')
       expect(page).to have_content('Número de vagas')
 
-
       expect(page).to have_css('h1', text: 'Programador RoR')
       expect(page).to have_content('Júnior')
       expect(page).to have_content('R$ 3.500,00')
@@ -181,7 +181,7 @@ feature 'User view jobs listed' do
 
   context 'as Candidate/Coder' do
     scenario 'and view no jobs listed' do
-      candidate = Candidate.create!(name: 'Gustavo', last_name: 'Carvalho', email: 'test@test.com', password:'123456')
+      candidate = Candidate.create!(name: 'Gustavo', last_name: 'Carvalho', email: 'test@test.com', password: '123456')
 
       login_as candidate, scope: :candidate
       visit root_path
@@ -198,7 +198,7 @@ feature 'User view jobs listed' do
     end
     scenario 'and view jobs listed' do
       headhunter = Headhunter.create!(email: 'test@test.com', password: '123456')
-      candidate = Candidate.create!(name: 'Gustavo', last_name: 'Carvalho', email: 'test@test.com', password:'123456')
+      candidate = Candidate.create!(name: 'Gustavo', last_name: 'Carvalho', email: 'test@test.com', password: '123456')
       Job.create!(title: 'Programador RoR',
                   level: 'Júnior',
                   number_of_vacancies: 4,
@@ -223,7 +223,7 @@ feature 'User view jobs listed' do
     end
 
     scenario 'and view job details' do
-      candidate = Candidate.create!(name: 'Gustavo', last_name: 'Carvalho', email: 'test@test.com', password:'123456')
+      candidate = Candidate.create!(name: 'Gustavo', last_name: 'Carvalho', email: 'test@test.com', password: '123456')
       headhunter = Headhunter.create!(email: 'test@test.com', password: '123456')
       Job.create!(title: 'Programador RoR',
                   level: 'Júnior',
@@ -255,27 +255,27 @@ feature 'User view jobs listed' do
       expect(page).to have_link('Aplicar para vaga')
     end
     scenario 'and if job is closed candidate cannot see it listed in jobs' do
-      headhunter = Headhunter.create!(email: "test@test.com", password: "123456")
-      Job.create!(title: "Programador RoR",
-                  level: "Júnior",
+      headhunter = Headhunter.create!(email: 'test@test.com', password: '123456')
+      Job.create!(title: 'Programador RoR',
+                  level: 'Júnior',
                   number_of_vacancies: 1,
                   salary: 3500,
-                  description: "Programador Ruby on Rails para atuar em startup",
-                  abilities: "CRUD, Git, Ruby, Ruby on Rails, Boa comunicação",
-                  deadline: "20/01/2020",
-                  start_date: "02/01/2020",
-                  location: "Remoto",
-                  contract_type: "CLT",
+                  description: 'Programador Ruby on Rails para atuar em startup',
+                  abilities: 'CRUD, Git, Ruby, Ruby on Rails, Boa comunicação',
+                  deadline: '20/01/2020',
+                  start_date: '02/01/2020',
+                  location: 'Remoto',
+                  contract_type: 'CLT',
                   headhunter: headhunter,
                   status: 1)
 
-      candidate = Candidate.create!(email: "candidate@test.com", password: "123456")
+      candidate = Candidate.create!(email: 'candidate@test.com', password: '123456')
 
-      Profile.create!(candidate: candidate, name: "Gustavo", last_name: "Carvalho",
-                      social_name: "Gustavo", birthday: "20/01/1994", about_yourself: "25 anos, eng civil",
-                      university: "UFU", graduation_course: "Eng Civil", year_of_graduation: "20/08/2017",
-                      company: "Geometa", role: "Estagiario", start_date: "20/01/2016", end_date: "20/06/2016",
-                      experience_description: "Auxiliou na obra")
+      Profile.create!(candidate: candidate, name: 'Gustavo', last_name: 'Carvalho',
+                      social_name: 'Gustavo', birthday: '20/01/1994', about_yourself: '25 anos, eng civil',
+                      university: 'UFU', graduation_course: 'Eng Civil', year_of_graduation: '20/08/2017',
+                      company: 'Geometa', role: 'Estagiario', start_date: '20/01/2016', end_date: '20/06/2016',
+                      experience_description: 'Auxiliou na obra')
 
       login_as candidate, scope: :candidate
       visit root_path
@@ -285,27 +285,27 @@ feature 'User view jobs listed' do
       expect(page).to have_content('Que pena! Não há vagas públicas listadas no momento.')
     end
     scenario 'and candidate cannot apply to closed job' do
-      headhunter = Headhunter.create!(email: "test@test.com", password: "123456")
-      job = Job.create!(title: "Programador RoR",
-                        level: "Júnior",
+      headhunter = Headhunter.create!(email: 'test@test.com', password: '123456')
+      job = Job.create!(title: 'Programador RoR',
+                        level: 'Júnior',
                         number_of_vacancies: 1,
                         salary: 3500,
-                        description: "Programador Ruby on Rails para atuar em startup",
-                        abilities: "CRUD, Git, Ruby, Ruby on Rails, Boa comunicação",
-                        deadline: "20/01/2020",
-                        start_date: "02/01/2020",
-                        location: "Remoto",
-                        contract_type: "CLT",
+                        description: 'Programador Ruby on Rails para atuar em startup',
+                        abilities: 'CRUD, Git, Ruby, Ruby on Rails, Boa comunicação',
+                        deadline: '20/01/2020',
+                        start_date: '02/01/2020',
+                        location: 'Remoto',
+                        contract_type: 'CLT',
                         headhunter: headhunter,
                         status: 1)
 
-      candidate = Candidate.create!(email: "candidate@test.com", password: "123456")
+      candidate = Candidate.create!(email: 'candidate@test.com', password: '123456')
 
-      Profile.create!(candidate: candidate, name: "Gustavo", last_name: "Carvalho",
-                      social_name: "Gustavo", birthday: "20/01/1994", about_yourself: "25 anos, eng civil",
-                      university: "UFU", graduation_course: "Eng Civil", year_of_graduation: "20/08/2017",
-                      company: "Geometa", role: "Estagiario", start_date: "20/01/2016", end_date: "20/06/2016",
-                      experience_description: "Auxiliou na obra")
+      Profile.create!(candidate: candidate, name: 'Gustavo', last_name: 'Carvalho',
+                      social_name: 'Gustavo', birthday: '20/01/1994', about_yourself: '25 anos, eng civil',
+                      university: 'UFU', graduation_course: 'Eng Civil', year_of_graduation: '20/08/2017',
+                      company: 'Geometa', role: 'Estagiario', start_date: '20/01/2016', end_date: '20/06/2016',
+                      experience_description: 'Auxiliou na obra')
 
       login_as candidate, scope: :candidate
       visit new_job_application_path(job)

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe 'Job management' do
@@ -6,10 +8,10 @@ describe 'Job management' do
       headhunter = create(:headhunter)
       job1 = create(:job, headhunter: headhunter)
       job2 = create(:job, title: 'Programador Node',
-                    number_of_vacancies: 2,
-                    description: 'Programador NodeJs com experiencia com git',
-                    abilities: 'NodeJs, Git, Git Flow, RESTful API',
-                    headhunter: headhunter)
+                          number_of_vacancies: 2,
+                          description: 'Programador NodeJs com experiencia com git',
+                          abilities: 'NodeJs, Git, Git Flow, RESTful API',
+                          headhunter: headhunter)
 
       get api_v1_jobs_path
 
@@ -69,19 +71,18 @@ describe 'Job management' do
       headhunter = create(:headhunter)
 
       post api_v1_jobs_path, params: {
-          title: 'Programador NodeJS',
-          level: 'Junior',
-          number_of_vacancies: 4,
-          salary: 3000,
-          description: 'Saber fazer testes em NodeJS',
-          abilities: 'Git, Git flow, NodeJS, Tester',
-          deadline: '20/03/2020',
-          start_date: '20/01/2020',
-          location: 'Remoto',
-          contract_type: 'CLT',
-          headhunter_id: headhunter.id,
+        title: 'Programador NodeJS',
+        level: 'Junior',
+        number_of_vacancies: 4,
+        salary: 3000,
+        description: 'Saber fazer testes em NodeJS',
+        abilities: 'Git, Git flow, NodeJS, Tester',
+        deadline: '20/03/2020',
+        start_date: '20/01/2020',
+        location: 'Remoto',
+        contract_type: 'CLT',
+        headhunter_id: headhunter.id
       }
-
 
       job = Job.last
       expect(response).to have_http_status(:created)
@@ -112,8 +113,7 @@ describe 'Job management' do
                                        start_date: '20/01/2020',
                                        location: 'Remoto',
                                        contract_type: 'CLT',
-                                       headhunter_id: headhunter.id
-      }
+                                       headhunter_id: headhunter.id }
 
       expect(response).to have_http_status(500)
       expect(response.body).to include('Estamos trabalhando para resolver!')
@@ -157,7 +157,6 @@ describe 'Job management' do
 
       expect(response).to have_http_status(500)
     end
-
   end
 
   context 'delete' do

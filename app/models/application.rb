@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Application < ApplicationRecord
   belongs_to :job
   belongs_to :candidate
@@ -5,5 +7,5 @@ class Application < ApplicationRecord
   has_one :feedback
   has_one :proposal
 
-  enum status: {in_progress: 0, rejected: 1, highlighted: 2, proposal_sent: 3, closed: 5}
+  enum status: { in_progress: 0, rejected: 1, highlighted: 2, proposal_sent: 3, closed: 5 }
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 feature 'Candidate edit profile' do
@@ -68,7 +70,7 @@ feature 'Candidate edit profile' do
     profile = Profile.create!(social_name: 'Test', birthday: '20/01/1994',
                               university: 'UFU',
                               company: 'Test', candidate: candidate)
-    other_candidate = Candidate.create!(email:'test2@test.com', password: '123456')
+    other_candidate = Candidate.create!(email: 'test2@test.com', password: '123456')
     other_profile = Profile.create!(candidate: other_candidate)
 
     login_as candidate, scope: :candidate
@@ -82,7 +84,7 @@ feature 'Candidate edit profile' do
     profile = Profile.create!(social_name: 'Test', birthday: '20/01/1994',
                               university: 'UFU',
                               company: 'Test', candidate: candidate)
-    other_candidate = Candidate.create!(email:'test2@test.com', password: '123456')
+    other_candidate = Candidate.create!(email: 'test2@test.com', password: '123456')
     other_profile = Profile.create!(candidate: other_candidate)
 
     login_as other_candidate, scope: :candidate

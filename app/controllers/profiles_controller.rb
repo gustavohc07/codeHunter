@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class ProfilesController < ApplicationController
   before_action :authenticate_candidate!, except: [:show]
-  before_action :has_profile?, only: [:new, :create]
-  before_action :profile_lock, only: [:show, :edit, :update]
+  before_action :has_profile?, only: %i[new create]
+  before_action :profile_lock, only: %i[show edit update]
 
   def show
     @profile = Profile.find(params[:id])
@@ -27,9 +29,7 @@ class ProfilesController < ApplicationController
 
   def update
     @profile = Profile.find(params[:id])
-    if @profile.update(profile_params)
-    redirect_to current_candidate.profile
-    end
+    redirect_to current_candidate.profile if @profile.update(profile_params)
   end
 
   private
@@ -41,11 +41,13 @@ class ProfilesController < ApplicationController
                                     :year_of_graduation, :company, :role,
                                     :start_date, :end_date, :experience_description,
                                     :candidate_id)
-                            .merge(candidate: current_candidate)
+          .merge(candidate: current_candidate)
   end
 
   def has_profile?
-    redirect_to edit_profile_path(current_candidate.profile) if current_candidate.profile
+    if current_candidate.profile
+      redirect_to edit_profile_path(current_candidate.profile)
+    end
   end
 
   def profile_lock

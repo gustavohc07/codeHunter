@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FeedbacksController < ApplicationController
   before_action :authenticate_headhunter!
 

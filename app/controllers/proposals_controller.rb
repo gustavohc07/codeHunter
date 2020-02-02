@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class ProposalsController < ApplicationController
-  before_action :authenticate_headhunter!, only: [:new, :create]
-  before_action :authenticate_candidate!, only: [:new_accept, :accept]
+  before_action :authenticate_headhunter!, only: %i[new create]
+  before_action :authenticate_candidate!, only: %i[new_accept accept]
 
   def index
     if candidate_signed_in?
@@ -44,7 +46,7 @@ class ProposalsController < ApplicationController
     @proposal = Proposal.find(params[:proposal_id])
     @proposal.accept!
     reject_all_other_offers
-    flash[:notice] = "Oba! Ficamos felizes que você tenha encontrado a sua oportunidade!"
+    flash[:notice] = 'Oba! Ficamos felizes que você tenha encontrado a sua oportunidade!'
     @proposal.update(proposal_params)
     redirect_to proposals_path
   end
@@ -58,7 +60,7 @@ class ProposalsController < ApplicationController
   def decline
     @proposal = Proposal.find(params[:proposal_id])
     @proposal.decline!
-    flash[:notice] = "Que pena que não poderá aceitar essa proposta. Mas fique tranquilo, várias outras aparecerão :)"
+    flash[:notice] = 'Que pena que não poderá aceitar essa proposta. Mas fique tranquilo, várias outras aparecerão :)'
     @proposal.update(proposal_params)
     redirect_to proposals_path
   end
@@ -81,10 +83,7 @@ class ProposalsController < ApplicationController
     @applications = Application.where(candidate_id: current_candidate)
     @proposals = Proposal.where(application_id: @applications)
     @proposals.each do |proposal|
-      if proposal.status == 'pending'
-        proposal.decline!
-      end
+      proposal.decline! if proposal.status == 'pending'
     end
   end
-
 end

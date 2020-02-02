@@ -1,7 +1,9 @@
-require "rails_helper"
+# frozen_string_literal: true
 
-feature "Headhunter/Codehunter view job applications" do
-  scenario "successfully" do
+require 'rails_helper'
+
+feature 'Headhunter/Codehunter view job applications' do
+  scenario 'successfully' do
     headhunter = Headhunter.create!(email: 'test@test.com', password: '123456')
     job = Job.create!(title: 'Programador RoR',
                       level: 'Júnior',
@@ -54,7 +56,7 @@ feature "Headhunter/Codehunter view job applications" do
     expect(page).to have_link(another_job.title)
     expect(page).to have_content('0 inscritos')
   end
-  scenario "and cannot view others headhunters/codehunters individual listed jobs" do
+  scenario 'and cannot view others headhunters/codehunters individual listed jobs' do
     headhunter = Headhunter.create!(email: 'test@test.com', password: '123456')
     another_headhunter = Headhunter.create!(email: 'other@test.com', password: '123456')
     job = Job.create!(title: 'Programador RoR',

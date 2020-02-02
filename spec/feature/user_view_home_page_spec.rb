@@ -1,5 +1,6 @@
-require 'rails_helper'
+# frozen_string_literal: true
 
+require 'rails_helper'
 
 feature 'user view home page' do
   context 'non registered' do
@@ -25,18 +26,18 @@ feature 'user view home page' do
     end
 
     scenario 'and logout' do
-        headhunter = Headhunter.create!(email: 'test@test.com', password: '123456')
+      headhunter = Headhunter.create!(email: 'test@test.com', password: '123456')
 
-        login_as(headhunter, scope: :headhunter)
-        visit root_path
-        click_on 'Sair'
+      login_as(headhunter, scope: :headhunter)
+      visit root_path
+      click_on 'Sair'
 
-        expect(page).to have_content('Logout efetuado com sucesso.')
+      expect(page).to have_content('Logout efetuado com sucesso.')
     end
   end
   context 'as a candidate/coder' do
     scenario 'successfully' do
-      candidate = Candidate.create!(email:'candidate@test.com', password: '123456')
+      candidate = Candidate.create!(email: 'candidate@test.com', password: '123456')
 
       login_as candidate, scope: :candidate
       visit root_path
@@ -47,7 +48,7 @@ feature 'user view home page' do
     end
 
     scenario 'and logout' do
-      candidate = Candidate.create!(email:'candidate@test.com', password: '123456')
+      candidate = Candidate.create!(email: 'candidate@test.com', password: '123456')
 
       login_as candidate, scope: :candidate
       visit root_path
