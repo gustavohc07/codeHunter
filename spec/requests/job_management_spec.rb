@@ -125,6 +125,7 @@ describe 'Job management' do
       headhunter = create(:headhunter)
       job = create(:job, headhunter: headhunter)
 
+      login_as headhunter, scope: :headhunter
       patch api_v1_job_path(job), params: { number_of_vacancies: 2,
                                             location: 'Sao Paulo' }
 

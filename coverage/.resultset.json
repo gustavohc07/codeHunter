@@ -1,27 +1,6 @@
 {
   "RSpec": {
     "coverage": {
-      "/home/gustavo/workspace/projetos/codehunter/app/mailers/job_application_mailer.rb": {
-        "lines": [
-          1,
-          1,
-          null,
-          null,
-          1,
-          4,
-          4,
-          null,
-          null
-        ]
-      },
-      "/home/gustavo/workspace/projetos/codehunter/app/mailers/application_mailer.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          null
-        ]
-      },
       "/home/gustavo/workspace/projetos/codehunter/app/models/job.rb": {
         "lines": [
           1,
@@ -39,28 +18,118 @@
           null
         ]
       },
-      "/home/gustavo/workspace/projetos/codehunter/app/models/profile.rb": {
+      "/home/gustavo/workspace/projetos/codehunter/app/controllers/application_controller.rb": {
         "lines": [
           1,
           1,
+          null,
+          1,
+          null,
           1,
           null,
           1,
           0,
           null,
+          0,
+          null,
+          null,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
           null
         ]
       },
-      "/home/gustavo/workspace/projetos/codehunter/app/models/application.rb": {
+      "/home/gustavo/workspace/projetos/codehunter/app/controllers/api/v1/JobsController.rb": {
         "lines": [
           1,
           1,
+          null,
+          1,
+          2,
+          2,
+          1,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          1,
+          2,
+          1,
+          null,
+          null,
+          null,
+          1,
+          3,
+          3,
+          1,
+          null,
+          null,
+          null,
+          1,
+          3,
+          3,
+          1,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null,
+          1,
+          3,
+          3,
+          2,
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
+          1,
+          null,
+          1,
+          6,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/gustavo/workspace/projetos/codehunter/app/controllers/api/v1/ApiController.rb": {
+        "lines": [
           1,
           1,
           1,
           1,
           null,
           1,
+          null,
+          1,
+          3,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          null,
           null
         ]
       },
@@ -86,8 +155,37 @@
         "branches": {
         }
       },
+      "/home/gustavo/workspace/projetos/codehunter/app/models/profile.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
       "/home/gustavo/workspace/projetos/codehunter/app/models/proposal.rb": {
         "lines": [
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/home/gustavo/workspace/projetos/codehunter/app/models/application.rb": {
+        "lines": [
+          0,
+          0,
           0,
           0,
           0,
@@ -153,6 +251,31 @@
         "branches": {
         }
       },
+      "/home/gustavo/workspace/projetos/codehunter/app/mailers/job_application_mailer.rb": {
+        "lines": [
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/home/gustavo/workspace/projetos/codehunter/app/mailers/application_mailer.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
       "/home/gustavo/workspace/projetos/codehunter/app/controllers/messages_controller.rb": {
         "lines": [
           0,
@@ -180,42 +303,6 @@
           0,
           0,
           0,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/home/gustavo/workspace/projetos/codehunter/app/controllers/application_controller.rb": {
-        "lines": [
-          0,
-          0,
-          null,
-          0,
-          null,
-          0,
-          null,
-          0,
-          0,
-          null,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
-          null,
-          null,
           0
         ],
         "branches": {
@@ -384,89 +471,6 @@
           0,
           0,
           0,
-          0,
-          0,
-          0,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/home/gustavo/workspace/projetos/codehunter/app/controllers/api/v1/JobsController.rb": {
-        "lines": [
-          0,
-          0,
-          null,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
-          0,
-          null,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/home/gustavo/workspace/projetos/codehunter/app/controllers/api/v1/ApiController.rb": {
-        "lines": [
-          0,
-          0,
-          0,
-          0,
-          null,
-          0,
-          null,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0,
-          null,
           0,
           0,
           0,
@@ -704,6 +708,6 @@
         }
       }
     },
-    "timestamp": 1580672583
+    "timestamp": 1580682618
   }
 }
