@@ -22,4 +22,10 @@ Rails.application.routes.draw do
     post 'decline', to: 'proposals#decline'
   end
   resources 'profiles', only: [:new, :create, :show, :edit, :update]
+
+  namespace 'api' do
+    namespace 'v1' do
+      resources :jobs, only: %i[index show create update destroy]
+    end
+  end
 end
