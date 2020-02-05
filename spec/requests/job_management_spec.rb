@@ -5,14 +5,20 @@ require 'rails_helper'
 describe 'Job management' do
   context 'index' do
     it 'should render all jobs correctly' do
+      image_path = Rails.root.join('spec/support/image.png')
       headhunter = create(:headhunter)
-      job1 = create(:job, headhunter: headhunter)
-      job2 = create(:job, title: 'Programador Node',
-                          number_of_vacancies: 2,
-                          description: 'Programador NodeJs com experiencia com git',
-                          abilities: 'NodeJs, Git, Git Flow, RESTful API',
-                          headhunter: headhunter)
-
+      job1 = build(:job, headhunter: headhunter)
+      job1.photo.attach(io: File.open(image_path),
+                        filename: 'image.png')
+      job1.save
+      job2 = build(:job, title: 'Programador Node',
+                    number_of_vacancies: 2,
+                    description: 'Programador NodeJs com experiencia com git',
+                    abilities: 'NodeJs, Git, Git Flow, RESTful API',
+                    headhunter: headhunter)
+      job2.photo.attach(io: File.open(image_path),
+                        filename: 'image.png')
+      job2.save
       get api_v1_jobs_path
 
       json = JSON.parse(response.body, symbolize_names: true)
@@ -47,8 +53,12 @@ describe 'Job management' do
 
   context 'show' do
     it 'should render a job correctly' do
+      image_path = Rails.root.join('spec/support/image.png')
       headhunter = create(:headhunter)
-      job = create(:job, headhunter: headhunter)
+      job = build(:job, headhunter: headhunter)
+      job.photo.attach(io: File.open(image_path),
+                        filename: 'image.png')
+      job.save
 
       get api_v1_job_path(job)
 

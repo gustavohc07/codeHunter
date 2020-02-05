@@ -7,7 +7,9 @@ class Api::V1::JobsController < Api::V1::ApiController
     @jobs = Job.all
     if @jobs.any?
       return render json: { message: 'Trabalhos renderizados com sucesso',
-                            data: @jobs },
+                            data: @jobs.map do |job|
+                              job.as_json.merge(image: url_for(job.photo))
+                            end },
                     status: :ok
     end
     render json: { message: 'Nao encontramos registros' }, status: 404
@@ -15,7 +17,8 @@ class Api::V1::JobsController < Api::V1::ApiController
 
   def show
     @job = Job.find(params[:id])
-    render json: { message: 'Vaga renderizada com sucesso', data: @job },
+    render json: { message: 'Vaga renderizada com sucesso',
+                   data: @job.as_json.merge(image: url_for(@job.photo)) },
            status: :ok
   end
 
