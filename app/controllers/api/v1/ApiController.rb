@@ -14,6 +14,6 @@ class Api::V1::ApiController < ActionController::API
   end
 
   def validation_error
-    render json: {message: @job.errors}, status: 412
+    render json: { message: @job.errors }, status: 412
   end
 end

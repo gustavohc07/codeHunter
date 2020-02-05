@@ -9,5 +9,9 @@ class Job < ApplicationRecord
   has_many :candidates, through: :applications
   has_one_attached :photo
 
-  enum status: {open: 0, close: 1, not_public: 5}
+  enum status: { open: 0, close: 1, not_public: 5 }
+
+  def as_json(*)
+    super.except("created_at", "updated_at")
+  end
 end
