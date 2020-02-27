@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
 RSpec.describe JobApplicationMailer do
@@ -98,12 +96,20 @@ RSpec.describe JobApplicationMailer do
                         contract_type: 'CLT',
                         headhunter: headhunter)
       candidate = Candidate.create!(email: 'candidate@test.com', password: '123456')
-      Profile.create!(candidate: candidate, name: 'Gustavo', last_name: 'Carvalho',
-                      social_name: 'Gustavo', birthday: '20/01/1994', about_yourself: '25 anos, eng civil',
-                      university: 'UFU', graduation_course: 'Eng Civil', year_of_graduation: '20/08/2017',
-                      company: 'Geometa', role: 'Estagiario', start_date: '20/01/2016', end_date: '20/06/2016',
+      Profile.create!(candidate: candidate, name: 'Gustavo',
+                      last_name: 'Carvalho', social_name: 'Gustavo',
+                      birthday: '20/01/1994',
+                      about_yourself: '25 anos, eng civil',
+                      university: 'UFU',
+                      graduation_course: 'Eng Civil',
+                      year_of_graduation: '20/08/2017',
+                      company: 'Geometa',
+                      role: 'Estagiario',
+                      start_date: '20/01/2016', end_date: '20/06/2016',
                       experience_description: 'Auxiliou na obra')
-      application = Application.create!(job: job, candidate: candidate, message: 'Ja me candidatei')
+      application = Application.create!(job: job,
+                                        candidate: candidate,
+                                        message: 'Ja me candidatei')
 
       mail = JobApplicationMailer.application_email(application.id)
 
