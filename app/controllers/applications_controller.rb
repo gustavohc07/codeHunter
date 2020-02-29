@@ -1,10 +1,8 @@
-# frozen_string_literal: true
-
 class ApplicationsController < ApplicationController
   before_action :authenticate_candidate!, only: %i[index new create destroy]
   before_action :authenticate_headhunter!, only: %i[highlight cancel_highlight]
   before_action :authorize_both!, only: [:show]
-  before_action :check_profile, only: %i[show new create edit update]
+  before_action :check_profile, only: %i[show new create]
   before_action :has_applied?, only: %i[new create]
   before_action :check_for_closed_jobs, only: %i[new create]
 
@@ -16,9 +14,9 @@ class ApplicationsController < ApplicationController
     @application = Application.find(params[:id])
     @messages = @application.messages
     @profile = @application.candidate.profile
-    unless current_candidate == @application.candidate || current_headhunter
-      redirect_to jobs_path
-    end
+    return if current_candidate == @application.candidate || current_headhunter
+
+    redirect_to jobs_path
   end
 
   def new
@@ -29,15 +27,16 @@ class ApplicationsController < ApplicationController
     @application = Application.new(application_params)
     @application.job = Job.find(params[:job_id])
     @application.candidate = current_candidate
-    if @application.save
-      JobApplicationMailer.application_email(@application.id)
-      flash[:notice] = 'Inscrição realizada com sucesso!'
-      redirect_to application_path(@application)
-    end
+    render :new && return unless @application.save
+
+    JobApplicationMailer.application_email(@application.id)
+    flash[:notice] = 'Inscrição realizada com sucesso!'
+    redirect_to application_path(@application)
   end
 
   def destroy
     @application = Application.find(params[:id])
+    JobApplicationMailer.cancelation_email(@application.id)
     @application.destroy
     flash[:notice] = 'Poxa! Que pena que você não poderá participar desse processo! :('
     redirect_to applications_path
